@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
+body {
+    background: #EAEEF1 !important;
+    font-family: 'Quicksand', sans-serif !important;
+}
+
+.customNavs {
+    background: #FCD345;
+    box-shadow: 0px 0px 10px #888888;
+}
+
+.customContainer {
+    margin-left: 4%;
+}
+
+.customCard {
+    margin: 0.68rem;
+    width: 8rem;
+    border-radius: 1em;
+}
+
+.customCardContainer {
+    border-radius: 1em !important;
+}
+
+.customNav {
+    margin: 0em 1em 1em;
+    border-radius: 10em;
+    background: #FFB508 !important;
+}
+
+.customBtn {
+    border-radius: 1em !important;
+}
+
+.customInput {
+    border-radius: 1em !important;
+}
+
+.customItem {
+    margin-bottom: 5%;
+}
