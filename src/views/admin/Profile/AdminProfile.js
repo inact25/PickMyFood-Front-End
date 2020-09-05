@@ -16,6 +16,5 @@ class AdminProfile extends Component {
         );
     }
 }
-//a
 
 export default AdminProfile;
