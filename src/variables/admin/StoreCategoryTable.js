@@ -4,6 +4,7 @@ import {RiDeleteBin2Line} from "react-icons/ri";
 
 class StoreCategoryTable extends Component {
     render() {
+        const {data, load} = this.props
         return (
             <table className="table">
                 <thead>
@@ -15,24 +16,15 @@ class StoreCategoryTable extends Component {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Padang Food</td>
-                    <td><a href=""><FaRegEdit/></a></td>
-                    <td><a href=""><RiDeleteBin2Line/></a></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Japanese Food </td>
-                    <td><a href=""><FaRegEdit/></a></td>
-                    <td><a href=""><RiDeleteBin2Line/></a></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Korean Food</td>
-                    <td><a href=""><FaRegEdit/></a></td>
-                    <td><a href=""><RiDeleteBin2Line/></a></td>
-                </tr>
+                {load ?
+                    data.map(storeCategory =>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>{storeCategory.store_category_name}</td>
+                            <td><a href=""><FaRegEdit/></a></td>
+                            <td><a href=""><RiDeleteBin2Line/></a></td>
+                        </tr>
+                    ) : <p>loading</p>}
                 </tbody>
             </table>
         );

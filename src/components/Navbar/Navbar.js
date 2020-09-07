@@ -1,13 +1,45 @@
 import React, {Component} from 'react';
 import {IoMdNotificationsOutline} from 'react-icons/io'
+import {connect} from "react-redux";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 class Navbar extends Component {
+    state = {
+        userData: ""
+
+    }
+
+    getUData = async () => {
+        let res = await this.props.usersData
+        return res
+
+    }
+
+
+    componentDidMount() {
+
+        this.getUData()
+                .then((res) => {
+                    this.setState({
+                        userData:res
+                    })
+                })
+                .catch((e) => {
+                    console.log(e)
+                });
+
+
+    }
+
     render() {
+        const {onNavSelected} = this.props.selected
+        const {onLogout} = this.props.logout
+        console.log("ini")
         return (
             <nav className="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
-                <div className="main-navbar__search w-100 d-none d-md-flex d-lg-flex">
-                </div>
-                <ul className="navbar-nav border-left flex-row">
+                <div className="w-100 d-none d-md-flex d-lg-flex"/>
+                <ul className="navbar-nav border-left flex-row ">
                     <li className="nav-item border-right dropdown notifications">
                         <a className="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,6 +79,27 @@ class Navbar extends Component {
                                 Notifications </a>
                         </div>
                     </li>
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#"
+                           role="button" aria-haspopup="true" aria-expanded="false">
+                            <img className="user-avatar rounded-circle mr-2"
+                                 src="https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"
+                                 alt="User Avatar" width="35px"/>
+                            <span
+                                className="d-none d-md-inline-block">{this.state.userData.userFirstname}</span>
+
+
+                        </a>
+                        <div className="dropdown-menu dropdown-menu-small">
+                            <a className="dropdown-item" onClick={() => onNavSelected("profile")}>
+                                Profile</a>
+                            <a className="dropdown-item" onClick={() => onNavSelected("feedback")}>
+                                Feedback</a>
+                            <div className="dropdown-divider"/>
+                            <a className="dropdown-item text-danger" onClick={() => onLogout()}>
+                                Logout </a>
+                        </div>
+                    </li>
                 </ul>
                 <nav className="nav">
                     <a href="#"
@@ -61,4 +114,11 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+const mapStateToProps = (state) => {
+    return {
+        usersData: state.fetchReducer.FetchAction.userData
+
+    }
+}
+
+export default connect(mapStateToProps, null)(Navbar);

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const getAllUsers = async () => {
-    const res = await axios.get("https://dummyapi.io/data/api/user")
+    const res = await axios.get("/user")
     return await res.data.data;
 };
 

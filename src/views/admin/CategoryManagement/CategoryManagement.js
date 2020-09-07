@@ -2,9 +2,51 @@ import React, {Component} from 'react';
 import ProductCategoryTable from "../../../variables/admin/ProductCategoryTable";
 import StoreCategoryTable from "../../../variables/admin/StoreCategoryTable";
 import InputForm from "../../../components/forms/Input/InputForm";
+import {getAllProductCategory, getAllStoreCategory, getAllStores} from "../../../apis/Admin/AdminStore";
+import Swal from "sweetalert2";
+import {connect} from "react-redux";
 
 class CategoryManagement extends Component {
+
+    state={
+        isProductLoaded:false,
+        isStoreLoaded:false
+    }
+
+    getAllSoreCategory = () => {
+        getAllStoreCategory()
+            .then((res) => {
+                this.props.GetStoreCategory(res)
+                this.setState({
+                    isStoreLoaded: true,
+                });
+            })
+            .catch((e) => {
+                Swal.fire("Oops", "Connection Timeout !!!", "error")
+            });
+    };
+    getAllProductCategory = () => {
+        getAllProductCategory()
+            .then((res) => {
+                this.props.GetProductCategory(res)
+                this.setState({
+                    isProductLoaded: true,
+                });
+            })
+            .catch((e) => {
+                Swal.fire("Oops", "Connection Timeout !!!", "error")
+            });
+    };
+
+
+    componentDidMount() {
+        this.getAllProductCategory()
+        this.getAllSoreCategory()
+    }
+
     render() {
+        const storeCategory = this.props.storeCategory
+        const productCategory = this.props.productCategory
 
         return (
             <>
@@ -19,7 +61,7 @@ class CategoryManagement extends Component {
                                     <InputForm title={"Add Store Category"} id={"addStoreCategory"}/>
                                 </li>
                                 <li className="list-group-item">
-                                    <StoreCategoryTable/>
+                                    <StoreCategoryTable data={storeCategory} load={this.state.isStoreLoaded}/>
                                 </li>
                             </ul>
 
@@ -35,7 +77,7 @@ class CategoryManagement extends Component {
                                     <InputForm title={"Add Product Category"} id={"addProductCategory"}/>
                                 </li>
                                 <li className="list-group-item">
-                                    <ProductCategoryTable/>
+                                    <ProductCategoryTable data={productCategory} load={this.state.isProductLoaded}/>
                                 </li>
                             </ul>
 
@@ -47,4 +89,27 @@ class CategoryManagement extends Component {
     }
 }
 
-export default CategoryManagement;
+const mapStateToProps = (state) => {
+    return {
+        storeCategory: state.fetchReducer.FetchAction.storeCategoryData,
+        productCategory: state.fetchReducer.FetchAction.productCategoryData
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        GetStoreCategory: (data) =>
+            dispatch({
+                type: 'GETSTORECATEGORY',
+                JsonData: data
+            }),
+        GetProductCategory: (data) =>
+            dispatch({
+                type: 'GETPRODUCTCATEGORY',
+                JsonData: data
+            })
+
+    }
+}
+
+export default  connect(mapStateToProps, mapDispatchToProps) (CategoryManagement);

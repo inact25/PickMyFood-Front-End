@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 
 class AdminProfileDataDetail extends Component {
+
     render() {
+        const {data, status,handle} = this.props
         return (
             <>
                 <div className="card">
@@ -9,59 +11,58 @@ class AdminProfileDataDetail extends Component {
                         <div className="row">
                             <div className="col-6">
                                 <div className="form-label-group">
-                                    <input type="text" id="inputName" className="form-control"
-                                           value="Angga Adji"
-                                           required disabled={true}/>
+                                    <input type="text" id="inputLastName" className="form-control"
+                                           value={data.userFirstName}
+                                           required disabled={!status}/>
                                     <label htmlFor="inputFirstname">Firstname </label>
                                 </div>
                             </div>
                             <div className="col-6">
                                 <div className="form-label-group">
-                                    <input type="text" id="inputName" className="form-control"
-                                           value="Surya"
-                                           required disabled={true}/>
+                                    <input type="text" id="inputLastName" className="form-control"
+                                           value={data.userLastName}
+                                           required disabled={!status}/>
                                     <label htmlFor="inputLastname">Lastname </label>
                                 </div>
                             </div>
                             <div className="col-6">
                                 <div className="form-label-group">
                                     <input type="text" id="inputUsername"
-                                           className="form-control" value="Angga25"
-                                           required disabled={true}/>
+                                           className="form-control" value="{data.auth.username"
+                                           required disabled={!status}/>
                                     <label htmlFor="inputUsername">Username </label>
                                 </div>
                             </div>
                             <div className="col-6">
                                 <div className="form-label-group">
                                     <input type="password" id="inputPassword"
-                                           className="form-control" value="Anggaadji"
-                                           required disabled={true}/>
+                                           className="form-control" value="{data.auth.password}"
+                                           required disabled={!status}/>
                                     <label htmlFor="inputPassword">Password</label>
                                 </div>
                             </div>
                             <div className="col-12">
                                 <div className="form-label-group">
                                                             <textarea style={{borderRadius: "1rem", minHeight: "98px"}}
-                                                                      type="text"
                                                                       id="inputAddress"
                                                                       className="form-control"
-                                                                      value="Klaten, Jawa Tengah, Indonesia"
-                                                                      required disabled={true}/>
+                                                                      value={data.userAddress}
+                                                                      required disabled={!status}/>
                                 </div>
                             </div>
                             <div className="col-12">
                                 <div className="form-label-group">
                                                             <textarea style={{borderRadius: "1rem", minHeight: "98px"}}
-                                                                      type="text"
                                                                       id="inputStatus"
                                                                       className="form-control"
-                                                                      value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?"
-                                                                      required disabled={true}/>
+                                                                      value={data.userStatus}
+                                                                      required disabled={!status}/>
                                 </div>
                             </div>
                             <div className="col-12">
                                 <button style={{borderRadius: "10rem"}}
                                         className="btn btn-lg btn-primary btn-block text-uppercase"
+                                        onClick={() => handle()}
                                         type="submit">Update
                                 </button>
                             </div>

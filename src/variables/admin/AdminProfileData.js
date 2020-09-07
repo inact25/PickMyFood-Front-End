@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 
 class AdminProfileData extends Component {
-    render() {
+        render() {
+        const {data} = this.props
+
         return (
             <>
                 <div className="card card-small mb-4 pt-3">
@@ -10,7 +12,7 @@ class AdminProfileData extends Component {
                             <img className="rounded-circle"
                                  src="https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"
                                  alt="User Avatar" width="110"/></div>
-                        <h4 className="mb-0">Angga Adji Surya</h4>
+                        <h4 className="mb-0">{data.userFirstName + " " + data.userLastName}</h4>
                         <span className="text-muted d-block mb-2">App Admin</span>
                     </div>
                     <ul className="list-group list-group-flush">
@@ -18,7 +20,7 @@ class AdminProfileData extends Component {
                         </li>
                         <li className="list-group-item p-4">
                             <strong className="text-muted d-block mb-2">Status</strong>
-                            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque?</span>
+                            <span>{data.userStatus}</span>
                         </li>
                     </ul>
                 </div>
@@ -27,4 +29,4 @@ class AdminProfileData extends Component {
     }
 }
 
-export default AdminProfileData;
+export default  AdminProfileData;

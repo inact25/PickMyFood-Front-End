@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import {Link} from "react-router-dom"
 
 class RegisterForm extends Component {
     render() {
+        const {go} = this.props
         return (
             <div>
                 <h5 className="card-title text-center">Register Store</h5>
@@ -47,7 +49,7 @@ class RegisterForm extends Component {
                         </div>
                         <div className="col-12">
                             <div className="form-label-group" >
-                                <textarea style={{borderRadius:"1rem"}} type="text" id="storeAddress" className="form-control" placeholder="Store Address"
+                                <textarea style={{borderRadius:"1rem"}} id="storeAddress" className="form-control" placeholder="Store Address"
                                        required/>
 
                             </div>
@@ -56,7 +58,7 @@ class RegisterForm extends Component {
                     <hr/>
                     <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register
                     </button>
-                    <a className="d-block text-center mt-2 small" href="#">Have an account ? Login here</a>
+                    <Link className="d-block text-center mt-2 small" to={go}>Have an account ? Login here</Link>
                 </form>
 
             </div>
