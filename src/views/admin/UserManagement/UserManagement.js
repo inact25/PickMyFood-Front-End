@@ -5,11 +5,12 @@ import AllUserData from "../../../variables/admin/AllUserData";
 import {connect} from "react-redux";
 import Swal from "sweetalert2";
 import {getAllUsers} from "../../../apis/Admin/AdminUser";
+import imageLoader from "../../../assets/img/loader2.gif";
 
 class UserManagement extends Component {
 
-    state={
-        isLoaded:false
+    state = {
+        isLoaded: false
     }
 
     getAllUsersData = () => {
@@ -20,10 +21,12 @@ class UserManagement extends Component {
                     isLoaded: true,
                 });
             })
-            .catch((e) => {
+            .catch(() => {
                 Swal.fire("Oops", "Connection Timeout !!!", "error")
             });
     };
+
+
     componentDidMount() {
         this.getAllUsersData()
     }
@@ -34,15 +37,23 @@ class UserManagement extends Component {
 
         return (
             <>
+
                 <div className="card">
-                    <div className="card-body">
-                        <UserSearch/>
-                        <hr/>
-                        <AllUserData data={allUser} load={this.state.isLoaded}/>
-                    </div>
-                    <div className="card-footer">
-                        <Pagination/>
-                    </div>
+                    {this.state.isLoaded ?
+                        <>
+                            <div className="card-body">
+                                <UserSearch/>
+                                <hr/>
+                                <AllUserData data={allUser}/>
+                            </div>
+                            <div className="card-footer">
+                                <Pagination/>
+                            </div>
+                        </>
+                        : <div className="text-center">
+                            <img width="150px" src={imageLoader} alt="loading"/>
+                            <p>loading...</p>
+                        </div>}
                 </div>
             </>
         );
@@ -68,4 +79,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default  connect(mapStateToProps, mapDispatchToProps) (UserManagement);
+export default connect(mapStateToProps, mapDispatchToProps)(UserManagement);

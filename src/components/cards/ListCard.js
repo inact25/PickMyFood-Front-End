@@ -2,19 +2,21 @@ import React, {Component} from 'react';
 
 class ListCard extends Component {
     render() {
-        const {name, type, image} = this.props
-
+        const {name, type, image, dataPopup, id} = this.props
+        console.log(id)
         return (
-            <div className="card card-small mb-4 pt-3">
-                <div className="card-header border-bottom text-center">
-                    <div className="mb-3 mx-auto">
-                        <img className="rounded-circle"
-                             src={image}
-                             alt="User Avatar" width="110"/>
+            <div className="cardHoov">
+                <div className="card card-small mb-4 pt-3">
+                    <div className="card-body border-bottom text-center">
+                        <div className="mb-3 mx-auto">
+                            <img className="rounded-circle"
+                                 src={image}
+                                 alt="User Avatar" width="110"/>
+                        </div>
+                        <h6 className="mb-0">{name}</h6>
+                        <span className="text-muted d-block mb-2">{type}</span>
+                        <a onClick={()=>dataPopup()} className="stretched-link" id={id}/>
                     </div>
-                    <h4 className="mb-0">{name}</h4>
-                    <span className="text-muted d-block mb-2">{type}</span>
-                    <a href="" className="stretched-link"/>
                 </div>
             </div>
         );

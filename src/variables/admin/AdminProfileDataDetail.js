@@ -1,73 +1,79 @@
 import React, {Component} from 'react';
+import imageLoader from "../../assets/img/loader2.gif";
 
 class AdminProfileDataDetail extends Component {
 
     render() {
-        const {data, status,handle} = this.props
+        const {data, load, changeInput,authChangeInput, onUpdate} = this.props
         return (
             <>
                 <div className="card">
                     <div className="card-body">
-                        <div className="row">
-                            <div className="col-6">
-                                <div className="form-label-group">
-                                    <input type="text" id="inputLastName" className="form-control"
-                                           value={data.userFirstName}
-                                           required disabled={!status}/>
-                                    <label htmlFor="inputFirstname">Firstname </label>
+                        {load ?
+                            <div className="row">
+                                <div className="col-6">
+                                    <div className="form-label-group">
+                                        <input type="text" id="userFirstName" name="userFirstName" className="form-control"
+                                                onChange={(e)=>changeInput(e)}
+                                               value={data.userFirstName}
+                                               required />
+                                        <label htmlFor="userFirstName">Firstname </label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="col-6">
-                                <div className="form-label-group">
-                                    <input type="text" id="inputLastName" className="form-control"
-                                           value={data.userLastName}
-                                           required disabled={!status}/>
-                                    <label htmlFor="inputLastname">Lastname </label>
+                                <div className="col-6">
+                                    <div className="form-label-group">
+                                        <input type="text" id="userLastName" name="userLastName" className="form-control"
+                                               onChange={(e)=>changeInput(e)}
+                                               value={data.userLastName}
+                                               required />
+                                        <label htmlFor="userLastName">Lastname </label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="col-6">
-                                <div className="form-label-group">
-                                    <input type="text" id="inputUsername"
-                                           className="form-control" value="{data.auth.username"
-                                           required disabled={!status}/>
-                                    <label htmlFor="inputUsername">Username </label>
+                                <div className="col-6">
+                                    <div className="form-label-group">
+                                        <input type="text" id="username"
+                                               name="username"
+                                               onChange={(e)=>authChangeInput(e)}
+                                               className="form-control" value={data.auth.username}
+                                               required />
+                                        <label htmlFor="username">Username </label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="col-6">
-                                <div className="form-label-group">
-                                    <input type="password" id="inputPassword"
-                                           className="form-control" value="{data.auth.password}"
-                                           required disabled={!status}/>
-                                    <label htmlFor="inputPassword">Password</label>
+                                <div className="col-6">
+                                    <div className="form-label-group">
+                                        <input type="password" id="inputPassword"
+                                               name="password"
+                                               className="form-control" value={data.auth.password}
+                                               onChange={(e)=>authChangeInput(e)}
+                                               required/>
+                                        <label htmlFor="inputPassword">Password</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="col-12">
-                                <div className="form-label-group">
-                                                            <textarea style={{borderRadius: "1rem", minHeight: "98px"}}
-                                                                      id="inputAddress"
+                                <div className="col-12">
+                                    <div className="form-label-group">
+                                                            <textarea style={{borderRadius: "1rem", minHeight: "255px"}}
+                                                                      id="userAddress"
+                                                                      name="userAddress"
                                                                       className="form-control"
+                                                                      onChange={(e)=>changeInput(e)}
                                                                       value={data.userAddress}
-                                                                      required disabled={!status}/>
+                                                                      required />
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="col-12">
-                                <div className="form-label-group">
-                                                            <textarea style={{borderRadius: "1rem", minHeight: "98px"}}
-                                                                      id="inputStatus"
-                                                                      className="form-control"
-                                                                      value={data.userStatus}
-                                                                      required disabled={!status}/>
+                                <div className="col-12">
+                                    <button style={{borderRadius: "10rem"}}
+                                            className="btn btn-lg btn-primary btn-block "
+                                            onClick={() => onUpdate()}
+                                            type="submit">Update
+                                    </button>
                                 </div>
-                            </div>
-                            <div className="col-12">
-                                <button style={{borderRadius: "10rem"}}
-                                        className="btn btn-lg btn-primary btn-block text-uppercase"
-                                        onClick={() => handle()}
-                                        type="submit">Update
-                                </button>
-                            </div>
 
-                        </div>
+                            </div>
+                            : <div className="text-center">
+                                <img width="150px" src={imageLoader} alt="loading"/>
+                                <p>loading...</p>
+                            </div>
+                        }
                     </div>
                 </div>
             </>

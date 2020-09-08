@@ -2,15 +2,16 @@ import React, {Component} from 'react';
 import ProductCategoryTable from "../../../variables/admin/ProductCategoryTable";
 import StoreCategoryTable from "../../../variables/admin/StoreCategoryTable";
 import InputForm from "../../../components/forms/Input/InputForm";
-import {getAllProductCategory, getAllStoreCategory, getAllStores} from "../../../apis/Admin/AdminStore";
+import {getAllProductCategory, getAllStoreCategory} from "../../../apis/Admin/AdminStore";
 import Swal from "sweetalert2";
 import {connect} from "react-redux";
+import imageLoader from "../../../assets/img/loader2.gif";
 
 class CategoryManagement extends Component {
 
-    state={
-        isProductLoaded:false,
-        isStoreLoaded:false
+    state = {
+        isProductLoaded: false,
+        isStoreLoaded: false
     }
 
     getAllSoreCategory = () => {
@@ -21,7 +22,7 @@ class CategoryManagement extends Component {
                     isStoreLoaded: true,
                 });
             })
-            .catch((e) => {
+            .catch(() => {
                 Swal.fire("Oops", "Connection Timeout !!!", "error")
             });
     };
@@ -33,7 +34,7 @@ class CategoryManagement extends Component {
                     isProductLoaded: true,
                 });
             })
-            .catch((e) => {
+            .catch(() => {
                 Swal.fire("Oops", "Connection Timeout !!!", "error")
             });
     };
@@ -52,35 +53,54 @@ class CategoryManagement extends Component {
             <>
                 <div className="row">
                     <div className="col-lg-6 col-md-12 col-sm-12">
-                        <div className="card card-small mb-4 pt-3">
-                            <div className="card-header border-bottom">
-                                <h5 className="mb-0">Store Category</h5>
-                            </div>
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item">
-                                    <InputForm title={"Add Store Category"} id={"addStoreCategory"}/>
-                                </li>
-                                <li className="list-group-item">
-                                    <StoreCategoryTable data={storeCategory} load={this.state.isStoreLoaded}/>
-                                </li>
-                            </ul>
 
+                        <div className="card card-small mb-4 pt-3">
+                            {this.state.isStoreLoaded ?
+                                <>
+                                    <div className="card-header border-bottom">
+                                        <h5 className="mb-0">Store Category</h5>
+                                    </div>
+                                    <ul className="list-group list-group-flush">
+                                        <li className="list-group-item">
+                                            <InputForm title={"Add Store Category"} id={"addStoreCategory"}/>
+                                        </li>
+                                        <li className="list-group-item">
+                                            <StoreCategoryTable data={storeCategory} load={this.state.isStoreLoaded}/>
+                                        </li>
+                                    </ul>
+                                </>
+                                : <div className="text-center">
+                                    <img width="150px" src={imageLoader} alt="loading"/>
+                                    <p>loading...</p>
+                                </div>
+                            }
                         </div>
+
+
                     </div>
                     <div className="col-lg-6 col-md-12 col-sm-12">
-                        <div className="card card-small mb-4 pt-3">
-                            <div className="card-header border-bottom">
-                                <h5 className="mb-0">Product Category</h5>
-                            </div>
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item">
-                                    <InputForm title={"Add Product Category"} id={"addProductCategory"}/>
-                                </li>
-                                <li className="list-group-item">
-                                    <ProductCategoryTable data={productCategory} load={this.state.isProductLoaded}/>
-                                </li>
-                            </ul>
 
+                        <div className="card card-small mb-4 pt-3">
+                            {this.state.isProductLoaded ?
+                                <>
+                                    <div className="card-header border-bottom">
+                                        <h5 className="mb-0">Product Category</h5>
+                                    </div>
+                                    <ul className="list-group list-group-flush">
+                                        <li className="list-group-item">
+                                            <InputForm title={"Add Product Category"} id={"addProductCategory"}/>
+                                        </li>
+                                        <li className="list-group-item">
+                                            <ProductCategoryTable data={productCategory}
+                                                                  load={this.state.isProductLoaded}/>
+                                        </li>
+                                    </ul>
+                                </>
+                                : <div className="text-center">
+                                    <img width="150px" src={imageLoader} alt="loading"/>
+                                    <p>loading...</p>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -112,4 +132,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default  connect(mapStateToProps, mapDispatchToProps) (CategoryManagement);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryManagement);

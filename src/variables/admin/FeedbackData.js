@@ -3,13 +3,16 @@ import FeedbackCard from "../../components/cards/FeedbackCard";
 
 class FeedbackData extends Component {
     render() {
-        const image = "https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"
-        const name = "Angga Adji Surya"
-        const type = "User"
-        const data = "Aplikasinya bagus"
+        const {data} = this.props
 
         return (
-            <FeedbackCard image={image} name={name} type={type} data={data}/>
+            <>
+                {data.map(feedback =>
+                    <div className="col-6">
+                        <FeedbackCard image={feedback.image} name={feedback.name} type={feedback.type} data={feedback.description}/>
+                    </div>
+                )}
+            </>
         );
     }
 }

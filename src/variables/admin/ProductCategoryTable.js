@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {FaRegEdit} from "react-icons/fa";
 import {RiDeleteBin2Line} from "react-icons/ri";
+import imageLoader from "../../assets/img/loader2.gif";
 
 class ProductCategoryTable extends Component {
     render() {
@@ -21,10 +22,16 @@ class ProductCategoryTable extends Component {
                 <tr>
                     <th scope="row">1</th>
                     <td>{productList.product_category_name}</td>
-                    <td><a href=""><FaRegEdit/></a></td>
-                    <td><a href=""><RiDeleteBin2Line/></a></td>
+                    <td><a><FaRegEdit/></a></td>
+                    <td><a><RiDeleteBin2Line/></a></td>
                 </tr>
-                    ) : <p>loading</p>}
+                    ) :  <tr>
+                        <td colSpan="4" className="text-center">
+                            <img width="150px" src={imageLoader} alt="loading"/>
+                            <br/>
+                            <p>Loading...</p>
+                        </td>
+                    </tr>}
                 </tbody>
             </table>
         );

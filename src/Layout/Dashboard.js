@@ -11,8 +11,6 @@ import UserManagement from "../views/admin/UserManagement/UserManagement";
 import CategoryManagement from "../views/admin/CategoryManagement/CategoryManagement";
 import AdminFeedback from "../views/admin/Feedback/AdminFeedback";
 import {isLogin} from "../apis/Auth/Auth";
-import {useHistory} from "react-router";
-
 
 class Dashboard extends Component {
     state = {
@@ -80,7 +78,7 @@ class Dashboard extends Component {
                                 <Header title= {this.state.title}/>
                                 {this.state.view}
                             </div>
-                            <Footer/>
+                            <Footer selected={this}/>
 
                         </main>
                     </div>

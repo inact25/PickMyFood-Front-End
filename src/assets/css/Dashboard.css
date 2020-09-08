@@ -41,3 +41,17 @@ body {
 .customItem {
     margin-bottom: 5%;
 }
+
+.cardHoov:hover {
+    transform: scale(1.05);
+    transition: transform .2s;
+}
+
+.main-sidebar {
+    z-index: 1 !important;
+}
+
+.swal-detail {
+    width: 80em !important;
+    border-radius: 0.5rem !important;
+}
