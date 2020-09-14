@@ -8,7 +8,7 @@ export const AuthApis = async (user, password) => {
         username: user,
         password:password
     }
-    let result = await axios.post(`http://34.101.198.49:8080/user/login`,  userData )
+    let result = await axios.post(`/user/login`,  userData )
     return result.data
 }
 
@@ -17,12 +17,12 @@ export const StoreLogin = async (user, password) => {
         storeUsername: user,
         storePassword: password
     }
-    let result = await axios.post(`http://34.101.198.49:8080/store/login`,  userData )
+    let result = await axios.post(`/store/login`,  userData )
     return result.data
 }
 
 export const storeRegister = async (data) => {
-    let res = await axios.post('http://34.101.198.49:8080/store/register',{
+    let res = await axios.post('/store/register',{
         storeName : data.storeName.toString(),
         storeAddress : data.storeAddress,
         storeOwner : data.storeOwner.toString(),
