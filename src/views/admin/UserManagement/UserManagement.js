@@ -4,13 +4,29 @@ import UserSearch from "../../../variables/admin/UserSearch";
 import AllUserData from "../../../variables/admin/AllUserData";
 import {connect} from "react-redux";
 import Swal from "sweetalert2";
-import {getAllUsers} from "../../../apis/Admin/AdminUser";
+import {getAllUsers} from "../../../apis/User/UserApis";
 import imageLoader from "../../../assets/img/loader2.gif";
+import withReactContent from "sweetalert2-react-content";
+import UserViewProfile from "./UserViewProfile";
 
 class UserManagement extends Component {
 
     state = {
         isLoaded: false
+    }
+
+    cardPopupRead = (e) => {
+        const MySwal = withReactContent(Swal)
+        sessionStorage.setItem("strSelected",e.target.id)
+        MySwal.fire({
+            html: (
+                <>
+                    <UserViewProfile/>
+                </>),
+            customClass: 'swal-detail',
+            showCancelButton: true,
+            showConfirmButton: false
+        })
     }
 
     getAllUsersData = () => {
@@ -44,7 +60,10 @@ class UserManagement extends Component {
                             <div className="card-body">
                                 <UserSearch/>
                                 <hr/>
-                                <AllUserData data={allUser}/>
+                                <AllUserData data={allUser}
+                                             load={this.state.isLoaded}
+                                             dataPopup={this.cardPopupRead}
+                                />
                             </div>
                             <div className="card-footer">
                                 <Pagination/>

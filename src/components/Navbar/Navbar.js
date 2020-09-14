@@ -40,6 +40,27 @@ class Navbar extends Component {
             <nav className="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
                 <div className="w-100 d-none d-md-flex d-lg-flex"/>
                 <ul className="navbar-nav border-left flex-row ">
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#"
+                           role="button" aria-haspopup="true" aria-expanded="false">
+                            <img className="user-avatar rounded-circle mr-2"
+                                 src="https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"
+                                 alt="User Avatar" width="35px"/>
+                            <span
+                                className="d-none d-md-inline-block">{this.state.userData.userFirstname}</span>
+
+
+                        </a>
+                        <div className="dropdown-menu dropdown-menu-small">
+                            <a className="dropdown-item" onClick={() => onNavSelected("profile")}>
+                                Profile</a>
+                            <a className="dropdown-item" onClick={() => onNavSelected("feedback")}>
+                                Feedback</a>
+                            <div className="dropdown-divider"/>
+                            <a className="dropdown-item text-danger" onClick={() => onLogout()}>
+                                Logout </a>
+                        </div>
+                    </li>
                     <li className="nav-item border-right dropdown notifications">
                         <a className="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -77,27 +98,6 @@ class Navbar extends Component {
                             </a>
                             <a className="dropdown-item notification__all text-center" href="#"> View all
                                 Notifications </a>
-                        </div>
-                    </li>
-                    <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#"
-                           role="button" aria-haspopup="true" aria-expanded="false">
-                            <img className="user-avatar rounded-circle mr-2"
-                                 src="https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"
-                                 alt="User Avatar" width="35px"/>
-                            <span
-                                className="d-none d-md-inline-block">{this.state.userData.userFirstname}</span>
-
-
-                        </a>
-                        <div className="dropdown-menu dropdown-menu-small">
-                            <a className="dropdown-item" onClick={() => onNavSelected("profile")}>
-                                Profile</a>
-                            <a className="dropdown-item" onClick={() => onNavSelected("feedback")}>
-                                Feedback</a>
-                            <div className="dropdown-divider"/>
-                            <a className="dropdown-item text-danger" onClick={() => onLogout()}>
-                                Logout </a>
                         </div>
                     </li>
                 </ul>

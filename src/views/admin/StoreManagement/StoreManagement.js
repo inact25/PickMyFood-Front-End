@@ -3,35 +3,31 @@ import AllStoreData from "../../../variables/admin/AllStoreData";
 import Pagination from "../../../components/Pagination/Pagination";
 import StoreSearch from "../../../variables/admin/StoreSearch";
 import Swal from "sweetalert2";
-import {getAllStores} from "../../../apis/Admin/AdminStore";
+import {getAllStores, getStoreProfile} from "../../../apis/Store/Store";
 import {connect} from "react-redux";
 import imageLoader from "../../../assets/img/loader2.gif";
 import withReactContent from 'sweetalert2-react-content'
-import AdminProfileData from "../../../variables/admin/AdminProfileData";
-import AdminProfileDataDetail from "../../../variables/admin/AdminProfileDataDetail";
+import StoreViewProfile from "./StoreViewProfile";
 
 class StoreManagement extends Component {
 
     state = {
-        isLoaded: false
+        isLoaded: false,
     }
 
-    cardPopup = () => {
+
+    cardPopupRead = (e) => {
         const MySwal = withReactContent(Swal)
+        sessionStorage.setItem("strSelected",e.target.id)
         MySwal.fire({
-            html:
-          <div className="row">
-              <div className="col-lg-4">
-                  <AdminProfileData/>
-              </div>
-              <div className="col-lg-8">
-                  <AdminProfileDataDetail/>
-              </div>
-          </div>,
+            html: (
+                <>
+                <StoreViewProfile/>
+            </>),
             customClass: 'swal-detail',
-            showCancelButton: false,
-            showConfirmButton: false
-    })
+            showCancelButton: true,
+            showConfirmButton: false,
+        })
     }
 
     getAllStoresData = () => {
@@ -63,7 +59,8 @@ class StoreManagement extends Component {
                                 <hr/>
                                 <AllStoreData data={allStore}
                                               load={this.state.isLoaded}
-                                              dataPopup={this.cardPopup}
+                                              dataPopup={this.cardPopupRead}
+
                                 />
                             </div>
                             <div className="card-footer">

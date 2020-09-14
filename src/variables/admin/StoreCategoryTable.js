@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {FaRegEdit} from "react-icons/fa";
 import {RiDeleteBin2Line} from "react-icons/ri";
 
-
 class StoreCategoryTable extends Component {
     render() {
         const {data} = this.props
@@ -17,12 +16,12 @@ class StoreCategoryTable extends Component {
                 </tr>
                 </thead>
                 <tbody>
-                {data.map(storeCategory =>
+                {data.map((storeCategory,index) =>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>{storeCategory.store_category_name}</td>
-                            <td><a><FaRegEdit/></a></td>
-                            <td><a><RiDeleteBin2Line/></a></td>
+                            <th scope="row">{index+1}</th>
+                            <td>{storeCategory.storeCategoryName}</td>
+                            <td><a className="text-warning"><FaRegEdit/></a></td>
+                            <td><a className="text-danger"><RiDeleteBin2Line/></a></td>
                         </tr>
                     )}
                 </tbody>

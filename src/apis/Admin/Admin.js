@@ -6,10 +6,7 @@ export const getAdminProfile = async (uid) => {
 };
 
 export const updateAdminProfile = async (uid, data) => {
-
-console.log(data.userImage)
     let res = await axios.put(`/user/update/${uid}`, {
-
         userFirstName: data.userFirstName.toString(),
         userLastName: data.userLastName.toString(),
         userAddress: data.userAddress.toString(),

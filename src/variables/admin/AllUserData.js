@@ -3,20 +3,19 @@ import ListCard from "../../components/cards/ListCard";
 
 class AllUserData extends Component {
     render() {
-        const {data} = this.props
-
+        const {data, dataPopup} = this.props
         const type = "User"
-        const storeImage = "https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png"
         return (
             <>
                 <div className="row">
 
                     {data.map(userList =>
-                            <div className="col-lg-3 col-md-6 col-sm-12">
-                                <ListCard name={userList.userFirstName + " " + userList.userLastName} type={type}
-                                          image={storeImage}/>
-                            </div>
-                        ) }
+                        <div className="col-lg-3 col-md-6 col-sm-12">
+                            <ListCard id={userList.userID} name={userList.userFirstName + " " + userList.userLastName} type={type}
+                                      image={userList.userImage}
+                                      dataPopup={dataPopup}/>
+                        </div>
+                    )}
                 </div>
             </>
         );

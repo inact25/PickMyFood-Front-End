@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {BiSearchAlt} from 'react-icons/bi'
 
 class SearchBar extends Component {
     render() {
@@ -6,7 +7,7 @@ class SearchBar extends Component {
         return (
             <div>
                 <div className="row">
-                    <div className="col-10">
+                    <div className="col-9">
                         <div className="form-label-group">
                             <input type="text" id="inputData" className="form-control"
                                    placeholder={title}
@@ -14,10 +15,10 @@ class SearchBar extends Component {
                             <label htmlFor="inputData">{title}</label>
                         </div>
                     </div>
-                    <div className="col-2">
-                        <button style={{borderRadius: "10rem", maxHeight: "3rem"}}
-                                className="btn btn-lg btn-primary btn-block"
-                                type="submit">Search
+                    <div className="col">
+                        <button style={{maxHeight: "3rem"}}
+                                className="btn btn-lg btn-dark  btn-pill"
+                                type="submit"><p style={{fontSize:"1rem"}}><BiSearchAlt/></p>
                         </button>
                     </div>
                 </div>

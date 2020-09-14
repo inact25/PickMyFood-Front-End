@@ -5,13 +5,13 @@ class FeedbackCard extends Component {
         const {image,name,type,data} = this.props
         return (
                 <div className="card card-small mb-4 pt-3">
-                    <div className="card-header border-bottom">
+                    <div className="card-body">
                         <div className="row">
                             <div className="col-4 text-center">
                                 <div className="mb-3 mx-auto">
                                     <img className="rounded-circle"
                                          src={image}
-                                         alt="User Avatar" width="35"/>
+                                         alt="User Avatar" width="125"/>
                                 </div>
                             </div>
                             <div className="col-8">
@@ -22,7 +22,6 @@ class FeedbackCard extends Component {
                         </div>
                         <hr/>
                         <p>{data}</p>
-                        <a href="" className="stretched-link"/>
                     </div>
                 </div>
         );

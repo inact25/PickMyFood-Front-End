@@ -20,7 +20,6 @@ class AdminProfile extends Component {
     handleChangeInput = (e) => {
         const name = e.target.name;
         const value = e.target.value
-        console.log(`${name} + ${value}`)
         this.setState(prevState => ({
             restData: {
                 ...prevState.restData,
@@ -79,7 +78,7 @@ class AdminProfile extends Component {
     getAdminProfile = (id) => {
         getAdminProfile(id)
             .then((res) => {
-                this.props.UserData(res)
+                this.props.AdminData(res)
                 this.setState({
                     isLoaded: true,
                     restData: res
@@ -117,14 +116,13 @@ class AdminProfile extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        usersData: state.fetchReducer.FetchAction.userData
-
+        adminData: state.fetchReducer.FetchAction.adminData
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        UserData: (data) => {
+        AdminData: (data) => {
             dispatch({
                 type: 'GETADMINDATA',
                 JsonData: data

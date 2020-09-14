@@ -3,7 +3,7 @@ import FeedbackData from "../../../variables/admin/FeedbackData";
 import Pagination from "../../../components/Pagination/Pagination";
 import Swal from "sweetalert2";
 import {connect} from "react-redux";
-import {getAllFeedback} from "../../../apis/Admin/AdminFeedback";
+import {getAllFeedback} from "../../../apis/Feedbacks/FeedbacksApi";
 import imageLoader from "../../../assets/img/loader3.gif";
 
 class AdminFeedback extends Component {
@@ -32,6 +32,7 @@ class AdminFeedback extends Component {
 
     render() {
         const allfeedback = this.props.feedbackData
+        console.log("props")
         return (
             <>
                 {this.state.isLoaded ?

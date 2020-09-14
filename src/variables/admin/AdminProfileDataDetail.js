@@ -51,7 +51,7 @@ class AdminProfileDataDetail extends Component {
                                 </div>
                                 <div className="col-12">
                                     <div className="form-label-group">
-                                                            <textarea style={{borderRadius: "1rem", minHeight: "255px"}}
+                                                            <textarea style={{borderRadius: "1rem", minHeight: "230px"}}
                                                                       id="userAddress"
                                                                       name="userAddress"
                                                                       className="form-control"
@@ -62,7 +62,7 @@ class AdminProfileDataDetail extends Component {
                                 </div>
                                 <div className="col-12">
                                     <button style={{borderRadius: "10rem"}}
-                                            className="btn btn-lg btn-primary btn-block "
+                                            className="btn btn-lg btn-warning btn-block "
                                             onClick={() => onUpdate()}
                                             type="submit">Update
                                     </button>

@@ -7,14 +7,16 @@ class FeedbackData extends Component {
 
         return (
             <>
-                {data.map(feedback =>
-                    <div className="col-6">
-                        <FeedbackCard image={feedback.image} name={feedback.name} type={feedback.type} data={feedback.description}/>
-                    </div>
-                )}
-            </>
-        );
-    }
-}
+                {data.map((feedback) =>
 
-export default FeedbackData;
+                        <div className="col-6">
+                            <FeedbackCard image={"https://www.creativefabrica.com/wp-content/uploads/2019/01/Want-your-feedback-icon-by-back1design1.png"} name={feedback.storeID} type={feedback.feedbackCreated}
+                                          data={feedback.feedbackValue}/>
+                        </div>
+                        )}
+            </>
+                );
+                }
+                }
+
+                export default FeedbackData;

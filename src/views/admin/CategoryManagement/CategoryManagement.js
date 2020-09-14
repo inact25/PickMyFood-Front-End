@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ProductCategoryTable from "../../../variables/admin/ProductCategoryTable";
 import StoreCategoryTable from "../../../variables/admin/StoreCategoryTable";
 import InputForm from "../../../components/forms/Input/InputForm";
-import {getAllProductCategory, getAllStoreCategory} from "../../../apis/Admin/AdminStore";
+import {getAllProductCategory, getAllStoreCategory,addProductCategory,addStoreCategory} from "../../../apis/Categories/CategoriesApi";
 import Swal from "sweetalert2";
 import {connect} from "react-redux";
 import imageLoader from "../../../assets/img/loader2.gif";
@@ -11,7 +11,63 @@ class CategoryManagement extends Component {
 
     state = {
         isProductLoaded: false,
-        isStoreLoaded: false
+        isStoreLoaded: false,
+        addStCategoryForm:"",
+        addPrCategoryForm:"",
+        productsubmitProgress :false,
+        storesubmitProgress:false
+    }
+
+    handleChange =(e)=>{
+        const name = e.target.name
+        const value = e.target.value
+        console.log(name + value)
+        this.setState({
+            [name]:[value]
+        })
+    }
+    addStoreCategory =()=>{
+        this.setState({
+            storesubmitProgress:true
+        })
+
+        addStoreCategory(this.state.addStCategoryForm)
+            .then((res)=>{
+               this.setState({
+                   addStCategoryForm:""
+               })
+                Swal.fire("Good job!", "Store Updated", "success").then(()=>{
+                    this.getAllSoreCategory()
+                    this.setState({
+                        storesubmitProgress:false
+                    })
+                })
+            })
+            .catch(()=>{
+                Swal.fire("Oops", "Connection Timeout !!!", "error")
+            })
+    }
+
+    addProductCategory =()=>{
+        this.setState({
+            productsubmitProgress:true
+        })
+
+        addProductCategory(this.state.addPrCategoryForm)
+            .then((res)=>{
+               this.setState({
+                   addPrCategoryForm:""
+               })
+                Swal.fire("Good job!", "Store Updated", "success").then(()=>{
+                    this.getAllProductCategory()
+                    this.setState({
+                        productsubmitProgress:false
+                    })
+                })
+            })
+            .catch(()=>{
+                Swal.fire("Oops", "Connection Timeout !!!", "error")
+            })
     }
 
     getAllSoreCategory = () => {
@@ -30,6 +86,8 @@ class CategoryManagement extends Component {
         getAllProductCategory()
             .then((res) => {
                 this.props.GetProductCategory(res)
+                console.log("dari api")
+                console.log(res)
                 this.setState({
                     isProductLoaded: true,
                 });
@@ -48,6 +106,8 @@ class CategoryManagement extends Component {
     render() {
         const storeCategory = this.props.storeCategory
         const productCategory = this.props.productCategory
+        console.log("props")
+        console.log(this.props.productCategory)
 
         return (
             <>
@@ -62,7 +122,14 @@ class CategoryManagement extends Component {
                                     </div>
                                     <ul className="list-group list-group-flush">
                                         <li className="list-group-item">
-                                            <InputForm title={"Add Store Category"} id={"addStoreCategory"}/>
+                                            <InputForm title={"Add Store Category"}
+                                                       id={"addStoreCategory"}
+                                                       name={"addStCategoryForm"}
+                                                       handleChange={this.handleChange}
+                                                       value={this.state.addStCategoryForm}
+                                                       submit={this.addStoreCategory}
+                                                       isAdding={this.state.storesubmitProgress}
+                                            />
                                         </li>
                                         <li className="list-group-item">
                                             <StoreCategoryTable data={storeCategory} load={this.state.isStoreLoaded}/>
@@ -88,7 +155,13 @@ class CategoryManagement extends Component {
                                     </div>
                                     <ul className="list-group list-group-flush">
                                         <li className="list-group-item">
-                                            <InputForm title={"Add Product Category"} id={"addProductCategory"}/>
+                                            <InputForm title={"Add Product Category"}
+                                                       id={"addProductCategory"}
+                                                       name="addPrCategoryForm"
+                                                       handleChange={this.handleChange}
+                                                       value={this.state.addPrCategoryForm}
+                                                       submit={this.addProductCategory}
+                                                       isAdding={this.state.productsubmitProgress}/>
                                         </li>
                                         <li className="list-group-item">
                                             <ProductCategoryTable data={productCategory}

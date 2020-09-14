@@ -1,5 +1,7 @@
 const initialState = {
-    userData: [],
+    selectedStore:"",
+    adminData: [],
+    userData:[],
     allUserData: [],
     allStoreData:[],
     storeCategoryData:[],
@@ -14,7 +16,12 @@ const FetchAction = (state = initialState, action) => {
         case 'GETADMINDATA' :
             return {
                 ...state,
-                userData: action.JsonData
+                adminData: action.JsonData
+            }
+        case 'GETUSERDATA':
+            return  {
+                ...state,
+                userData:action.JsonData
             }
         case 'GETALLUSERS':
             return {
@@ -40,6 +47,11 @@ const FetchAction = (state = initialState, action) => {
             return  {
                 ...state,
                 allfeedbackData:action.JsonData
+            }
+        case 'SELECTEDSTORE':
+            return  {
+                ...state,
+                selectedStore: action.JsonData
             }
         default:
             return state

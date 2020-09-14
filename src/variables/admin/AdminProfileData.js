@@ -21,7 +21,7 @@ class AdminProfileData extends Component {
                                          alt="User Avatar" width="110"/>
                                 </div>
                                 <div>
-                                    <label htmlFor="file" className="btn btn-primary justify-content-center" style={{borderRadius:"10rem"}}>Change Profile</label>
+                                    <label htmlFor="file" className="btn btn-dark justify-content-center" style={{borderRadius:"10rem"}}>Change Profile</label>
                                     <input id="file" style={{visibility:"hidden"}} type="file" name="file" placeholder="Upload Profile Image" onChange={(e)=>changePicture(e)}/>
                                 </div>
                                 <h4 className="mb-0">{data.userFirstName + " " + data.userLastName}</h4>
@@ -53,4 +53,4 @@ class AdminProfileData extends Component {
     }
 }
 
-export default AdminProfileData;
+export default  AdminProfileData;
