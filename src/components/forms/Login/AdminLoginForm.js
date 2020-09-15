@@ -3,7 +3,7 @@ import {Link, Redirect, useHistory} from "react-router-dom"
 import {AuthApis, isLogin} from "../../../apis/Auth/AuthApis";
 import Swal from "sweetalert2";
 import {createBrowserHistory} from "history";
-import AdminLog from '../../../assets/img/adminLog.svg'
+import AdminLog from '../../../assets/img/default/adminLog.svg'
 import Cookies from 'universal-cookie';
 
 

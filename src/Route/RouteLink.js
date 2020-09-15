@@ -20,7 +20,7 @@ class RouteLink extends Component {
                     <Route exact path="/devmas" component={AdminLoginLayout}/>
                     <Route exact path="/login" component={StoreLoginLayout}/>
                     <Route exact path="/register" component={StoreRegisterLayout}/>
-                    <Route exact component={TopupManagement}/>
+                    <Route exact component={}/>
                 </Switch>
         );
     }

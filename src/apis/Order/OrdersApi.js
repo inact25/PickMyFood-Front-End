@@ -11,7 +11,6 @@ export const getStoreOrders = async (uid) => {
 };
 
 export const getSpecificOrders = async (uid) => {
-    console.log("masuk api", uid)
     let res = await axios.get(`/order/${uid}`,{
         headers: {
             token:authToken

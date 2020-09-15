@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {getStoreTransaction} from "../../../apis/Transaction/TransactionApi";
 import Swal from "sweetalert2";
-import imageLoader from "../../../assets/img/loader2.gif";
+import imageLoader from "../../../assets/img/loader/loader2.gif";
 import withReactContent from "sweetalert2-react-content";
 
 import Invoice from "../OrderManagement/Invoice";

@@ -2,19 +2,19 @@ import React, {Component} from 'react';
 import Pagination from "../../../components/Pagination/Pagination";
 import StoreSearch from "../../../variables/admin/StoreSearch";
 import Swal from "sweetalert2";
-import imageLoader from "../../../assets/img/loader2.gif";
+import imageLoader from "../../../assets/img/loader/loader2.gif";
 import {getProductStore} from "../../../apis/Store/Store";
 import withReactContent from "sweetalert2-react-content";
 import Invoice from "../OrderManagement/Invoice";
 import ProductDetail from "./ProductDetail";
 import AddProduct from "./AddProduct";
 import {GrAddCircle} from "react-icons/gr"
+import {connect} from "react-redux";
 
 class ProductManagement extends Component {
     state = {
         id: localStorage.getItem('uid'),
         isLoaded: false,
-        storeProduct: [],
     }
 
     cardPopupRead = (e) => {
@@ -28,7 +28,7 @@ class ProductManagement extends Component {
             customClass: 'swal-product-detail',
             showCancelButton: true,
             showConfirmButton: false,
-        })
+           })
     }
 
     cardPopupWrite = () => {
@@ -41,15 +41,16 @@ class ProductManagement extends Component {
             customClass: 'swal-product-detail',
             showCancelButton: true,
             showConfirmButton: false,
+            onClose :
+                this.getStoreProduct()
         })
     }
 
     getStoreProduct = () => {
-        console.log("masuk un")
         getProductStore(this.state.id)
             .then((res) => {
+                this.props.StoreProductData(res)
                 this.setState({
-                    storeProduct: res,
                     isLoaded: true
                 })
             }).catch(() => {
@@ -57,12 +58,19 @@ class ProductManagement extends Component {
         })
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.storeProductData !== this.props.storeProductData) {
+            this.getStoreProduct()
+        }
+    }
+
+
     componentDidMount() {
         this.getStoreProduct()
     }
 
     render() {
-        const data = this.state.storeProduct
+        const data = this.props.storeProductData
         console.log(data)
         return (
             <div className="card card-small mb-4 pt-3">
@@ -136,4 +144,22 @@ class ProductManagement extends Component {
     }
 }
 
-export default ProductManagement;
+const mapStateToProps = (state) => {
+    return {
+        storeProductData: state.fetchReducer.FetchAction.storeProductData
+
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        StoreProductData: (data) => {
+            dispatch({
+                type: 'GETSTOREPRODUCT',
+                JsonData: data
+            })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (ProductManagement);

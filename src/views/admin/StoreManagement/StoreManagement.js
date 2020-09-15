@@ -5,7 +5,7 @@ import StoreSearch from "../../../variables/admin/StoreSearch";
 import Swal from "sweetalert2";
 import {getAllStores, getStoreProfile} from "../../../apis/Store/Store";
 import {connect} from "react-redux";
-import imageLoader from "../../../assets/img/loader2.gif";
+import imageLoader from "../../../assets/img/loader/loader2.gif";
 import withReactContent from 'sweetalert2-react-content'
 import StoreViewProfile from "./StoreViewProfile";
 
@@ -13,6 +13,7 @@ class StoreManagement extends Component {
 
     state = {
         isLoaded: false,
+        allStore:[]
     }
 
 
@@ -29,11 +30,16 @@ class StoreManagement extends Component {
             showConfirmButton: false,
         })
     }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.allStoreData !== this.props.allStoreData) {
+            this.getAllStoresData()
+        }
+    }
 
     getAllStoresData = () => {
         getAllStores()
             .then((res) => {
-                this.props.UserListData(res)
+                this.props.StoreListData(res)
                 this.setState({
                     isLoaded: true,
                 });
@@ -86,7 +92,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        UserListData: (data) => {
+        StoreListData: (data) => {
             dispatch({
                 type: 'GETALLSTORES',
                 JsonData: data

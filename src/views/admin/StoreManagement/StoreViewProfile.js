@@ -5,7 +5,7 @@ import '../../../assets/css/Login.css'
 import {downloadQRStoreImage, getQRStoreImage} from "../../../apis/Base/QRApis";
 import Swal from "sweetalert2";
 import {getStoreProfile, updateStoreProfile} from "../../../apis/Store/Store";
-import imageLoader from "../../../assets/img/loader2.gif";
+import imageLoader from "../../../assets/img/loader/loader2.gif";
 import {UploadApis} from "../../../apis/Base/UploadApis";
 import {getAllStoreCategory} from "../../../apis/Categories/CategoriesApi";
 
@@ -124,16 +124,12 @@ class StoreViewProfile extends Component {
 
     componentDidMount() {
         this.getStoreProfile(sessionStorage.getItem("strSelected"))
-        console.log("key :", sessionStorage.getItem("strSelected"))
         this.getAllSoreCategory()
     }
 
     render() {
         const data = this.state.storeProfile
         const qr = data.storeQrPath
-        console.log("data from store")
-        console.log(data)
-
         return (
             <>
                 {this.state.isLoaded ?

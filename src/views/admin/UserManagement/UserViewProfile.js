@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {getUserProfile, updateUserProfile} from "../../../apis/User/UserApis";
 import Swal from "sweetalert2";
-import imageLoader from "../../../assets/img/loader2.gif";
+import imageLoader from "../../../assets/img/loader/loader2.gif";
 import {UploadApis} from "../../../apis/Base/UploadApis";
 
 class UserViewProfile extends Component {

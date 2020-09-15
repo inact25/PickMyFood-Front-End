@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {getSpecificProduct} from "../../../apis/Store/Store";
-import imageLoader from "../../../assets/img/loader2.gif";
+import imageLoader from "../../../assets/img/loader/loader2.gif";
 import Swal from "sweetalert2";
 import {getAllProductCategory} from "../../../apis/Categories/CategoriesApi";
 import {connect} from "react-redux";

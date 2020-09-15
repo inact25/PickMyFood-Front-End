@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Swal from "sweetalert2";
-import imageLoader from "../../../assets/img/loader2.gif";
-import {confirmTopup, getTopupList} from "../../../apis/TopupApi";
+import imageLoader from "../../../assets/img/loader/loader2.gif";
+import {confirmTopup, getTopupList} from "../../../apis/Wallet/WalletApi";
 
 class TopupManagement extends Component {
     state = {

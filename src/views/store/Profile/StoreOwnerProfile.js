@@ -5,7 +5,7 @@ import '../../../assets/css/Login.css'
 import {downloadQRStoreImage, getQRStoreImage} from "../../../apis/Base/QRApis";
 import Swal from "sweetalert2";
 import {getStoreProfile, updateStoreProfile} from "../../../apis/Store/Store";
-import imageLoader from "../../../assets/img/loader2.gif";
+import imageLoader from "../../../assets/img/loader/loader2.gif";
 import {UploadApis} from "../../../apis/Base/UploadApis";
 import {getAllStoreCategory} from "../../../apis/Categories/CategoriesApi";
 

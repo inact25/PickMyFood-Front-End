@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom"
 import {getAllStoreCategory} from "../../../apis/Categories/CategoriesApi";
 import Swal from "sweetalert2";
-import imageLoader from "../../../assets/img/loader2.gif";
+import imageLoader from "../../../assets/img/loader/loader2.gif";
 import {storeRegister} from "../../../apis/Auth/AuthApis";
 import {createBrowserHistory} from "history";
 

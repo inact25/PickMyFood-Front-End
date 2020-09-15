@@ -23,7 +23,7 @@ class InputForm extends Component {
                 </div>
                 <div className="col-4">
                     <button style={{borderRadius: "10rem", maxHeight: "3rem"}}
-                            className="btn btn-lg btn-dark btn-block"
+                            className="btn btn-lg btn-outline-dark btn-block"
                             type="submit"
                             disabled={isAdding}
                     onClick={()=>submit()}><p style={{fontSize:"1rem"}}><GrAddCircle/></p>

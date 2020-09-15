@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {getSpecificOrders} from "../../../apis/Order/OrdersApi";
-import imageLoader from "../../../assets/img/loader2.gif";
+import imageLoader from "../../../assets/img/loader/loader2.gif";
 
 
 class Invoice extends Component {

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 import {StoreLogin} from "../../../apis/Auth/AuthApis";
 import Swal from "sweetalert2";
 import {createBrowserHistory} from "history";
-import StoreLog from '../../../assets/img/StoreLog.svg'
+import StoreLog from '../../../assets/img/default/StoreLog.svg'
 
 class StoreLoginForm extends Component {
 

@@ -5,7 +5,7 @@ import AllUserData from "../../../variables/admin/AllUserData";
 import {connect} from "react-redux";
 import Swal from "sweetalert2";
 import {getAllUsers} from "../../../apis/User/UserApis";
-import imageLoader from "../../../assets/img/loader2.gif";
+import imageLoader from "../../../assets/img/loader/loader2.gif";
 import withReactContent from "sweetalert2-react-content";
 import UserViewProfile from "./UserViewProfile";
 
@@ -25,7 +25,9 @@ class UserManagement extends Component {
                 </>),
             customClass: 'swal-detail',
             showCancelButton: true,
-            showConfirmButton: false
+            showConfirmButton: false,
+            onClose :
+                this.getAllUsersData()
         })
     }
 
@@ -41,6 +43,12 @@ class UserManagement extends Component {
                 Swal.fire("Oops", "Connection Timeout !!!", "error")
             });
     };
+
+    componentDidUpdate(prevProps, prevState,snapshot) {
+        if (prevProps.allUsersData !== this.props.allUsersData) {
+            this.getAllUsersData()
+        }
+    }
 
 
     componentDidMount() {

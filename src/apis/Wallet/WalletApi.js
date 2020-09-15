@@ -1,5 +1,5 @@
 import axios from "axios";
-import {authToken} from "./Auth/AuthApis";
+import {authToken} from "../Auth/AuthApis";
 
 export const getTopupList = async () => {
     let res = await axios.get(`/topUp`,{
@@ -11,8 +11,6 @@ export const getTopupList = async () => {
 };
 
 export const confirmTopup = async (uid,price)=> {
-    console.log("api")
-    console.log(uid+price)
     let res = await axios.post(`/wallet/transfer/${uid}`,{
         amount : price
     },{
@@ -20,6 +18,5 @@ export const confirmTopup = async (uid,price)=> {
             token:authToken
         }
     })
-    console.log(res)
     return res.data.data
 }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {getStoreOrders} from "../../../apis/Order/OrdersApi";
 import Swal from "sweetalert2";
-import imageLoader from "../../../assets/img/loader2.gif";
+import imageLoader from "../../../assets/img/loader/loader2.gif";
 import withReactContent from "sweetalert2-react-content";
 import StoreViewProfile from "../../admin/StoreManagement/StoreViewProfile";
 import Invoice from "./Invoice";
@@ -24,6 +24,8 @@ class OrderManagement extends Component {
             customClass: 'swal-invoices',
             showCancelButton: true,
             showConfirmButton: false,
+        }).then(()=>{
+            this.getStoreOrders()
         })
     }
 

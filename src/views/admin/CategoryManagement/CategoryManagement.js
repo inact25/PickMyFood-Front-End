@@ -5,7 +5,7 @@ import InputForm from "../../../components/forms/Input/InputForm";
 import {getAllProductCategory, getAllStoreCategory,addProductCategory,addStoreCategory} from "../../../apis/Categories/CategoriesApi";
 import Swal from "sweetalert2";
 import {connect} from "react-redux";
-import imageLoader from "../../../assets/img/loader2.gif";
+import imageLoader from "../../../assets/img/loader/loader2.gif";
 
 class CategoryManagement extends Component {
 

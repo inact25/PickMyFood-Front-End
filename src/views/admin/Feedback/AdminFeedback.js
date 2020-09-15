@@ -4,7 +4,7 @@ import Pagination from "../../../components/Pagination/Pagination";
 import Swal from "sweetalert2";
 import {connect} from "react-redux";
 import {getAllFeedback} from "../../../apis/Feedbacks/FeedbacksApi";
-import imageLoader from "../../../assets/img/loader3.gif";
+import imageLoader from "../../../assets/img/loader/loader3.gif";
 
 class AdminFeedback extends Component {
 

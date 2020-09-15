@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import imageLoader from "../../assets/img/loader2.gif";
+import imageLoader from "../../assets/img/loader/loader2.gif";
 
 class AdminProfileDataDetail extends Component {
 
