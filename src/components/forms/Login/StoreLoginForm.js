@@ -4,6 +4,7 @@ import {StoreLogin} from "../../../apis/Auth/AuthApis";
 import Swal from "sweetalert2";
 import {createBrowserHistory} from "history";
 import StoreLog from '../../../assets/img/default/StoreLog.svg'
+import Cookies from "universal-cookie";
 
 class StoreLoginForm extends Component {
 
@@ -12,7 +13,6 @@ class StoreLoginForm extends Component {
         pass:'',
         isLoaded:false
     }
-
 
     function = {
         handleChangeInput: (event) => {
@@ -24,13 +24,15 @@ class StoreLoginForm extends Component {
         },
         handleSubmit : event => {
             event.preventDefault();
+            const cookies = new Cookies();
             const history = createBrowserHistory()
             StoreLogin(this.state.user, this.state.pass)
                 .then((res)=> {
                         Swal.fire("Good job!", "Login Successfully", "success").then(()=>{
                             localStorage.setItem('utoken', res.data.token.token);
                             localStorage.setItem('uid', res.data.storeID);
-                            localStorage.setItem('ustype', "1");
+                            localStorage.setItem('ustype', "0");
+                            cookies.set('btoken', res.data.token.token, { path: '/' });
                             history.push('/dashboard');
                             history.go(0)
                         });

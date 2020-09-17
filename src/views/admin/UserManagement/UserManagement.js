@@ -4,7 +4,7 @@ import UserSearch from "../../../variables/admin/UserSearch";
 import AllUserData from "../../../variables/admin/AllUserData";
 import {connect} from "react-redux";
 import Swal from "sweetalert2";
-import {getAllUsers} from "../../../apis/User/UserApis";
+import {deleteUser, getAllUsers} from "../../../apis/User/UserApis";
 import imageLoader from "../../../assets/img/loader/loader2.gif";
 import withReactContent from "sweetalert2-react-content";
 import UserViewProfile from "./UserViewProfile";

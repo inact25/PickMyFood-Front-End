@@ -5,7 +5,6 @@ class AllStoreData extends Component {
     render() {
         const {data, dataPopup} = this.props
         const type = "store"
-        console.log(data)
         return (
             <>
                 <div className="row">

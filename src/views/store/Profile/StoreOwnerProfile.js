@@ -96,8 +96,6 @@ class StoreOwnerProfile extends Component {
     handleCategoryChangeInput = (e) => {
         const name = e.target.name;
         const value = e.target.value
-        console.log(name + " " + value)
-        console.log(this.state.storeProfile)
         this.setState(prevState => ({
             storeProfile: {
                 ...prevState.storeProfile,
@@ -128,8 +126,6 @@ class StoreOwnerProfile extends Component {
     render() {
         const data = this.state.storeProfile
         const qr = data.storeQrPath
-        console.log(data)
-
         return (
             <>
                     <div className="row">
@@ -254,11 +250,6 @@ class StoreOwnerProfile extends Component {
                                                     </div>
                                                 </div>
                                                 <div className="col-6">
-                                                    <button style={{borderRadius: "10rem"}}
-                                                            className="btn btn-lg btn-danger btn-block "
-                                                            onClick=""
-                                                            type="submit">Delete
-                                                    </button>
                                                 </div>
                                                 <div className="col-6">
                                                     <button style={{borderRadius: "10rem"}}

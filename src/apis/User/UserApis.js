@@ -6,8 +6,8 @@ export const getUserProfile = async (uid) => {
     return await res.data.data;
 };
 
-export const getAllUsers = async () => {
-    const res = await axios.get("/user?keyword=&page=0&limit=6",{
+export const getAllUsers = async () => { //tambain s jadi users
+    const res = await axios.get("/users?keyword=&page=0&limit=6",{
         headers: {
             token:authToken
         }
@@ -32,3 +32,14 @@ export const updateUserProfile = async (uid, data) => {
 
     return await res.data;
 };
+
+export const deleteUser = async (uid) => {
+    console.log("apis")
+    console.log(uid)
+    const res = await axios.delete(`/user/delete/${uid}`,{
+        headers: {
+            token:authToken
+        }
+    })
+    return await res.data
+}

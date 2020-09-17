@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Link, Redirect, useHistory} from "react-router-dom"
-import {AuthApis, isLogin} from "../../../apis/Auth/AuthApis";
+import {AuthApis} from "../../../apis/Auth/AuthApis";
 import Swal from "sweetalert2";
 import {createBrowserHistory} from "history";
 import AdminLog from '../../../assets/img/default/adminLog.svg'
@@ -29,14 +28,19 @@ class AdminLoginForm extends Component {
             const history = createBrowserHistory()
             AuthApis(this.state.user, this.state.pass)
                 .then((res)=> {
+                    if(res.data.auth.userLevelID === 1){
+                        Swal.fire("Oops", "Invalid Login", "error")
+                    }
+                    if(res.data.auth.userLevelID === 3){
                         Swal.fire("Good job!", "Login Successfully", "success").then(()=>{
                             localStorage.setItem('utoken', res.data.auth.authentication.token);
                             localStorage.setItem('uid', res.data.userID);
-                            localStorage.setItem('ustype', "0");
+                            localStorage.setItem('ustype', res.data.auth.userLevelID);
                             cookies.set('btoken', res.data.auth.authentication.token, { path: '/' });
                             history.push('/dashboard');
                             history.go(0)
                         });
+                    }
                 })
                 .catch(()=>{
                     Swal.fire("Oops", "Invalid Login", "error");

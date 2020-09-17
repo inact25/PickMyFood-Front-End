@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import {getAllProductCategory} from "../../../apis/Categories/CategoriesApi";
 import {connect} from "react-redux";
 import {UploadApis} from "../../../apis/Base/UploadApis";
-import {updateProduct} from "../../../apis/Product/ProductApis";
+import {deleteStoreProduct, updateProduct} from "../../../apis/Product/ProductApis";
 
 class ProductDetail extends Component {
 
@@ -38,6 +38,16 @@ class ProductDetail extends Component {
             .catch(() => {
                 Swal.fire("Oops", "Connection Timeout !!!", "error")
             });
+    }
+
+    deleteStoreProduct = () =>{
+        deleteStoreProduct(this.state.id)
+            .then(()=>{
+                Swal.fire("Good job!", "Product Deleted", "success")
+            })
+            .catch(()=>{
+                Swal.fire("Oops", "Connection Timeout !!!", "error")
+            })
     }
 
     getSpecificProduct = () => {
@@ -220,7 +230,7 @@ class ProductDetail extends Component {
                                             </div>
                                         </div>
                                         <div className="col-6">
-                                            <button className="btn btn-lg btn-block btn-danger btn-pill">Delete</button>
+                                            <button onClick={()=>{this.deleteStoreProduct()}} className="btn btn-lg btn-block btn-danger btn-pill">Delete</button>
                                         </div>
                                         <div className="col-6">
                                             <button onClick={()=>{this.updateProduct()}} className="btn btn-lg btn-block btn-primary btn-pill">Save</button>

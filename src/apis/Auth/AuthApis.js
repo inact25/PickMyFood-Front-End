@@ -1,7 +1,11 @@
 import axios from "axios";
 import Swal from "sweetalert2";
+import Cookies from "universal-cookie";
+import {cleanCookies} from "universal-cookie/cjs/utils";
 
+const cookies = new Cookies();
 export const authToken = localStorage.getItem('utoken')
+export const bToken = cookies.get('btoken')
 
 export const AuthApis = async (user, password) => {
     const userData = {
@@ -35,33 +39,26 @@ export const storeRegister = async (data) => {
     return res.data
 }
 
-export const isLogin = (history,location) => {
-    if (localStorage.getItem('utoken') !== null){
-       history.push("/");
-    }else{
-        if(window.location.pathname !== '/login'){
-        Swal.fire("Oops", "You need login first", "error");
-        history.push('/login');
+export const isLogin = (history) => {
+    if (localStorage.getItem('utoken') !== null) {
+        if (localStorage.getItem('utoken') === cookies.get('btoken')) {
+            history.push("/");
+        }else {
+            localStorage.clear()
+            sessionStorage.clear()
+            cleanCookies()
+            Swal.fire("Oops", "You need login first", "error");
+            history.push('/login');
         }
-    }
-}
-export const isAdmin = (history,location) => {
-    if (localStorage.getItem('utoken') !== null){
-       history.push("/");
-    }else{
-        if(window.location.pathname !== '/login'){
-        Swal.fire("Oops", "You need login first", "error");
-        history.push('/devmas');
+    } else {
+        if (window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/devmas') {
+            Swal.fire("Oops", "You need login first", "error");
+            history.push('/login');
         }
-    }
-}
-
-export const isRegister = (history,location) => {
-    if (localStorage.getItem('utoken') !== null){
-        history.push("/");
-    }else{
-        if(window.location.pathname !== '/register') {
-            history.push('/register');
+        else {
+            localStorage.clear()
+            sessionStorage.clear()
+            cleanCookies()
         }
     }
 }

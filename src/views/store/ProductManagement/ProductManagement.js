@@ -71,7 +71,6 @@ class ProductManagement extends Component {
 
     render() {
         const data = this.props.storeProductData
-        console.log(data)
         return (
             <div className="card card-small mb-4 pt-3">
                 {this.state.isLoaded ?

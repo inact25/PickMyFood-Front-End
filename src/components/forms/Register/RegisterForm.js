@@ -12,60 +12,63 @@ class RegisterForm extends Component {
         storeCategory: [],
         isLoaded: false
     }
-
-    registerAccount = () => {
-        const data = this.state.registerData
-        const history = createBrowserHistory()
-        storeRegister(data)
-            .then(() => {
-                Swal.fire("Good job!", "Register Succesfull", "success").then(()=>{
-                    history.push('/login')
-                    history.go(0)
-                })
-            }).catch(() => {
-            Swal.fire("Oops", "Something when wrong", "error");
-        })
-    }
-
-    getAllSoreCategory = () => {
-        getAllStoreCategory()
-            .then((res) => {
-
-                this.setState({
-                    isLoaded: true,
-                    storeCategory: res,
-                });
+    function = {
+        registerAccount : event => {
+            event.preventDefault();
+            const data = this.state.registerData
+            const history = createBrowserHistory()
+            storeRegister(data)
+                .then(() => {
+                    Swal.fire("Good job!", "Register Succesfull", "success").then(()=>{
+                        history.push('/login')
+                        history.go(0)
+                    })
+                }).catch(() => {
+                Swal.fire("Oops", "Something when wrong", "error");
             })
-            .catch(() => {
-                Swal.fire("Oops", "Connection Timeout !!!", "error")
-            });
-    };
+        },
 
-    handleChangeInput = (e) => {
-        const name = e.target.name;
-        const value = e.target.value
-        this.setState(prevState => ({
-            registerData: {
-                ...prevState.registerData,
-                [name]: [value]
-            }
-        }))
+        getAllSoreCategory : () => {
+            getAllStoreCategory()
+                .then((res) => {
+
+                    this.setState({
+                        isLoaded: true,
+                        storeCategory: res,
+                    });
+                })
+                .catch(() => {
+                    Swal.fire("Oops", "Connection Timeout !!!", "error")
+                });
+        },
+
+        handleChangeInput : (e) => {
+            const name = e.target.name;
+            const value = e.target.value
+            this.setState(prevState => ({
+                registerData: {
+                    ...prevState.registerData,
+                    [name]: [value]
+                }
+            }))
+        },
+
+        handleCategoriesChange : (e) => {
+            const val = e.target.value
+            this.setState(prevState => ({
+                registerData: {
+                    ...prevState.registerData,
+                    storeCategoryId: [val]
+
+                }
+            }))
+        }
     }
 
 
-    handleCategoriesChange = (e) => {
-        const val = e.target.value
-        this.setState(prevState => ({
-            registerData: {
-                ...prevState.registerData,
-                storeCategoryId: [val]
-
-            }
-        }))
-    }
 
     componentDidMount() {
-        this.getAllSoreCategory()
+        this.function.getAllSoreCategory()
     }
 
 
@@ -76,7 +79,9 @@ class RegisterForm extends Component {
             <div>
                 <h5 className="card-title text-center">Register Store</h5>
                 {this.state.isLoaded ?
-                    <div className="form-signin">
+                    <>
+                    <form onSubmit={
+                       this.function.registerAccount} className="form-signin">
                         <div className="row">
                             <div className="col-8">
                                 <div className="form-label-group">
@@ -84,13 +89,13 @@ class RegisterForm extends Component {
                                            placeholder="Store Name"
                                            required
                                            value={data.storeName}
-                                           onChange={(e) => this.handleChangeInput(e)}/>
+                                           onChange={this.function.handleChangeInput}/>
                                     <label htmlFor="storeName">Store Name</label>
                                 </div>
                             </div>
                             <div className="col-4">
                                 <div className="form-label-group">
-                                    <select name="storeCategoryID" onChange={(e) => this.handleCategoriesChange(e)}
+                                    <select name="storeCategoryID" onChange={this.function.handleCategoriesChange}
                                             className="custom-select" style={{borderRadius: "10rem", height: "3rem"}}>
                                         <option selected>Select Category</option>
                                         {this.state.storeCategory.map((storeCategory) =>
@@ -106,7 +111,7 @@ class RegisterForm extends Component {
                                            placeholder="Store Owner"
                                            required
                                            value={data.storeOwner}
-                                           onChange={(e) => this.handleChangeInput(e)}/>
+                                           onChange={this.function.handleChangeInput}/>
                                     <label htmlFor="storeOwner">Store Owner</label>
                                 </div>
                             </div>
@@ -116,7 +121,7 @@ class RegisterForm extends Component {
                                            placeholder="storeUsername"
                                            required
                                            value={data.storeUsername}
-                                           onChange={(e) => this.handleChangeInput(e)}/>
+                                           onChange={this.function.handleChangeInput}/>
                                     <label htmlFor="storeUsername">Store Username</label>
                                 </div>
                             </div>
@@ -126,7 +131,7 @@ class RegisterForm extends Component {
                                            className="form-control" placeholder="Store Password"
                                            required
                                            value={data.storePassword}
-                                           onChange={(e) => this.handleChangeInput(e)}/>
+                                           onChange={this.function.handleChangeInput}/>
                                     <label htmlFor="storePassword">Store Password</label>
                                 </div>
                             </div>
@@ -141,12 +146,12 @@ class RegisterForm extends Component {
                             </div>
                         </div>
                         <hr/>
-                        <button className="btn btn-lg btn-warning btn-block text-uppercase" onClick={() => {
-                            this.registerAccount()
-                        }} name="submit" id="submit" type="submit">Register
+                        <button className="btn btn-lg btn-warning btn-block text-uppercase"
+                      type="submit">Register
                         </button>
-                        <Link className="d-block text-center mt-2 small" to={go}>Have an account ? Login here</Link>
-                    </div>
+                    </form>
+                    <Link className="d-block text-center mt-2 small" to={go}>Have an account ? Login here</Link>
+                    </>
                     : <div className="text-center">
                         <img width="150px" src={imageLoader} alt="loading"/>
                         <p>loading...</p>

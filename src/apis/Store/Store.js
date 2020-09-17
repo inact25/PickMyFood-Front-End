@@ -1,4 +1,5 @@
 import axios from "axios"
+import {authToken} from "../Auth/AuthApis";
 
 export const getAllStores = async () => {
     const res = await axios.get("/stores")
@@ -16,9 +17,7 @@ export const getSpecificProduct = async (uid) =>{
 };
 
 export const getStoreProfile = async (uid) => {
-    console.log("api0")
     let res = await axios.get(`/store/${uid}`)
-    console.log(res)
     return await res.data.data;
 };
 
@@ -38,6 +37,16 @@ export const updateStoreProfile = async (uid, data) => {
 
     return await res.data;
 };
+
+export const deleteStore = async (uid) => {
+    const res = await axios.delete(`/store/delete/${uid}`,{
+        headers: {
+            token:authToken
+        }
+    })
+    return await res.data
+}
+
 
 
 

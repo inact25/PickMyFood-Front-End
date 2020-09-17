@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import LoginContainer from "../../components/containers/Login/LoginContainer";
 import AdminLoginForm from "../../components/forms/Login/AdminLoginForm";
 import '../../assets/css/Login.css'
-import {isAdmin} from "../../apis/Auth/AuthApis";
+import {isLogin} from "../../apis/Auth/AuthApis";
 
 class AdminLoginLayout extends Component {
     componentDidMount() {
-        isAdmin(this.props.history, this.props.location)
+        isLogin(this.props.history)
     }
     render() {
         return (

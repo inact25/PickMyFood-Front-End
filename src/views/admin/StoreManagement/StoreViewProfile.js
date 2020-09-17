@@ -4,7 +4,7 @@ import '../../../assets/css/Dashboard.css'
 import '../../../assets/css/Login.css'
 import {downloadQRStoreImage, getQRStoreImage} from "../../../apis/Base/QRApis";
 import Swal from "sweetalert2";
-import {getStoreProfile, updateStoreProfile} from "../../../apis/Store/Store";
+import {deleteStore, getStoreProfile, updateStoreProfile} from "../../../apis/Store/Store";
 import imageLoader from "../../../assets/img/loader/loader2.gif";
 import {UploadApis} from "../../../apis/Base/UploadApis";
 import {getAllStoreCategory} from "../../../apis/Categories/CategoriesApi";
@@ -93,11 +93,24 @@ class StoreViewProfile extends Component {
             }
         }))
     }
+
+    deleteStore = () => {
+        console.log("id")
+        console.log(this.state.id)
+        deleteStore(this.state.id)
+            .then(()=>{
+                Swal.fire("Good job!", "Store Deleted", "success")
+            })
+            .catch((e)=>{
+                Swal.fire("Oops", "Connection Timeout !!!", "error")
+                console.log(e)
+            })
+    }
+
+
     handleCategoryChangeInput = (e) => {
         const name = e.target.name;
         const value = e.target.value
-        console.log(name + " " + value)
-        console.log(this.state.storeProfile)
         this.setState(prevState => ({
             storeProfile: {
                 ...prevState.storeProfile,
@@ -109,8 +122,6 @@ class StoreViewProfile extends Component {
         }))
     }
     getStoreProfile = (uid) => {
-        console.log("masuk fun")
-        console.log(uid)
         getStoreProfile(uid)
             .then((res) => {
                 this.setState({
@@ -243,7 +254,9 @@ class StoreViewProfile extends Component {
                                         <div className="col-6">
                                             <button style={{borderRadius: "10rem"}}
                                                     className="btn btn-lg btn-danger btn-block "
-                                                    onClick=""
+                                                    onClick={()=>{
+                                                        this.deleteStore()
+                                                    }}
                                                     type="submit">Delete
                                             </button>
                                         </div>

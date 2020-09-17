@@ -3,6 +3,7 @@ import {getUserProfile, updateUserProfile} from "../../../apis/User/UserApis";
 import Swal from "sweetalert2";
 import imageLoader from "../../../assets/img/loader/loader2.gif";
 import {UploadApis} from "../../../apis/Base/UploadApis";
+import {deleteUser} from "../../../apis/User/UserApis";
 
 class UserViewProfile extends Component {
 
@@ -43,6 +44,20 @@ class UserViewProfile extends Component {
             })
             .catch(()=>{
                 Swal.fire("Oops", "Connection Timeout !!!", "error")
+            })
+    }
+
+
+    deleteUser = () => {
+        console.log("id")
+        console.log(this.state.id)
+        deleteUser(this.state.id)
+            .then(()=>{
+                Swal.fire("Good job!", "Store Deleted", "success")
+            })
+            .catch((e)=>{
+                Swal.fire("Oops", "Connection Timeout !!!", "error")
+                console.log(e)
             })
     }
 
@@ -209,7 +224,7 @@ class UserViewProfile extends Component {
                                         <div className="col-6">
                                             <button style={{borderRadius: "10rem"}}
                                                     className="btn btn-lg btn-danger btn-block "
-                                                    onClick=""
+                                                    onClick={()=>{this.deleteUser()}}
                                                     type="submit">Delete
                                             </button>
                                         </div>

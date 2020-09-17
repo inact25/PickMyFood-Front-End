@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 class StoreSidebar extends Component {
     render() {
-        const {selected} = this.props
+        const {selected,data} = this.props
         return (
             <aside className="main-sidebar col-12 col-md-3 col-lg-2 px-0">
                 <div className="main-navbar">
@@ -21,36 +21,12 @@ class StoreSidebar extends Component {
 
                 <div className="nav-wrapper">
                     <ul className="nav flex-column">
+                        {data.map((link)=>
                         <li className="nav-item">
-                            <a className="nav-link" id="dashboard" onClick={(e)=>selected(e)}>
-                             Dashboard
-                            </a>
+                            <a title={link.desc} className="nav-link" id={link.id} onClick={(e)=>selected(e)}>
+                                {link.name} </a>
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link" id="strProfile" onClick={(e)=>selected(e)}>
-                               Store Profile
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" id="productMgmt" onClick={(e)=>selected(e)}>
-                               Product Management
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" id="orderMgmt" onClick={(e)=>selected(e)}>
-                              Order Management
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" id="trxMgmt" onClick={(e)=>selected(e)}>
-                               Transaction Management
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" id="useFeedback" onClick={(e)=>selected(e)}>
-                               Feedback
-                            </a>
-                        </li>
+                        )}
                     </ul>
                 </div>
             </aside>

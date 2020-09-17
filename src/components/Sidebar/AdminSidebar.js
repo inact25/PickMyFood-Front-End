@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 class AdminSidebar extends Component {
     render() {
-        const {selected} = this.props
+        const {selected,data} = this.props
         return (
             <aside className="main-sidebar col-12 col-md-3 col-lg-2 px-0">
                 <div className="main-navbar">
@@ -21,41 +21,14 @@ class AdminSidebar extends Component {
 
                 <div className="nav-wrapper">
                     <ul className="nav flex-column">
+                        {data.map((link)=>
                         <li className="nav-item" >
-                            <a className="nav-link" id="dashboard" onClick={(e)=>selected(e)}>
-                             Dashboard
+                            <a title={link.desc} className="nav-link" id={link.id} onClick={(e)=>selected(e)}>
+                                {link.name}
                             </a>
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link" id="admProfile" onClick={(e)=>selected(e)}>
-                               Profile
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" id="storeMgmt" onClick={(e)=>selected(e)}>
-                                  Store Management
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" id="userMgmt" onClick={(e)=>selected(e)}>
-                              User Management
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" id="categoryMgmt" onClick={(e)=>selected(e)}>
-                               Category Management
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" id="walletMgmt" onClick={(e)=>selected(e)}>
-                                Wallet Management
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" id="seeFeedback" onClick={(e)=>selected(e)}>
-                               Feedback
-                            </a>
-                        </li>
+                        )}
+
                     </ul>
                 </div>
             </aside>

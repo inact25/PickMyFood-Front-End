@@ -13,7 +13,6 @@ class StoreManagement extends Component {
 
     state = {
         isLoaded: false,
-        allStore:[]
     }
 
 

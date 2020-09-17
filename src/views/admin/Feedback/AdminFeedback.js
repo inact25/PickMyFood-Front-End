@@ -25,6 +25,12 @@ class AdminFeedback extends Component {
             });
     };
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.feedbackData !== this.props.feedbackData) {
+            this.getAllFeedbackData()
+        }
+    }
+
     componentDidMount() {
         this.getAllFeedbackData()
     }

@@ -7,7 +7,10 @@ const initialState = {
     storeCategoryData:[],
     productCategoryData:[],
     allfeedbackData:[],
-    storeProductData:[]
+    storeProductData:[],
+    storeRatingData:[],
+    topupData:[],
+    transactionData:[]
 
 
 }
@@ -58,6 +61,21 @@ const FetchAction = (state = initialState, action) => {
             return  {
                 ...state,
                 storeProductData: action.JsonData
+            }
+        case 'GETALLRATING':
+            return  {
+                ...state,
+                storeRatingData:action.JsonData
+            }
+            case 'GETALLTOPUP':
+            return  {
+                ...state,
+                topupData:action.JsonData
+            }
+            case 'GETALLTRANSACTION':
+            return  {
+                ...state,
+                transactionData:action.JsonData
             }
         default:
             return state

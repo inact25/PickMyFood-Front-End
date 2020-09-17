@@ -2,19 +2,18 @@ import React, {Component} from 'react';
 import Swal from "sweetalert2";
 import imageLoader from "../../../assets/img/loader/loader2.gif";
 import {confirmTopup, getTopupList} from "../../../apis/Wallet/WalletApi";
+import {connect} from "react-redux";
 
 class TopupManagement extends Component {
     state = {
         id: localStorage.getItem('uid'),
         isLoaded: false,
-        topupList: [],
     }
 
 
     cardPopupRead = (e) => {
         const id = e.target.id
         const data = e.target.name
-        console.log(id + data)
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success btn-pill m-1',
@@ -61,24 +60,26 @@ class TopupManagement extends Component {
     getTopup = () => {
         getTopupList()
             .then((res) => {
-                console.log("hasil res")
-                console.log(res)
+                this.props.TopUpData(res)
                 this.setState({
-                    topupList: res,
                     isLoaded: true
                 })
             }).catch(() => {
             Swal.fire("Oops", "Connection Timeout !!!", "error")
         })
     }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.topupData !== this.props.topupData) {
+            this.getTopup()
+        }
+    }
 
     componentDidMount() {
-        console.log("data")
         this.getTopup()
     }
 
     render() {
-        const data = this.state.topupList
+        const data = this.props.topupData
         return (
             <div className="card card-small mb-4 pt-3">
                 {this.state.isLoaded ?
@@ -138,4 +139,22 @@ class TopupManagement extends Component {
     }
 }
 
-export default TopupManagement;
+const mapStateToProps = (state) => {
+    return {
+        topupData: state.fetchReducer.FetchAction.topupData
+
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        TopUpData: (data) => {
+            dispatch({
+                type: 'GETALLTOPUP',
+                JsonData: data
+            })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (TopupManagement);

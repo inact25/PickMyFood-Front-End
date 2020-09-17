@@ -5,11 +5,12 @@ import imageLoader from "../../../assets/img/loader/loader2.gif";
 import withReactContent from "sweetalert2-react-content";
 
 import Invoice from "../OrderManagement/Invoice";
+import {connect} from "react-redux";
 class TransactionManagement extends Component {
     state = {
         id: localStorage.getItem('uid'),
         isLoaded: false,
-        storeTransaction: [],
+
     }
 
     cardPopupRead = (e) => {
@@ -28,16 +29,10 @@ class TransactionManagement extends Component {
 
 
     getStoreTransaction = () => {
-        console.log("masuk un")
         getStoreTransaction(this.state.id)
             .then((res) => {
-                console.log("res")
-
-                console.log(res)
-                console.log("res.data")
-                console.log(res.data)
+                this.props.TransactionData(res.data)
                 this.setState({
-                    storeTransaction: res.data,
                     isLoaded: true
                 })
             }).catch(() => {
@@ -45,12 +40,18 @@ class TransactionManagement extends Component {
         })
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.transactionData !== this.props.transactionData) {
+            this.getStoreTransaction()
+        }
+    }
+
     componentDidMount() {
         this.getStoreTransaction()
     }
 
     render() {
-        const data = this.state.storeTransaction
+        const data = this.props.transactionData
         return (
             <div className="card card-small mb-4 pt-3">
                 {this.state.isLoaded ?
@@ -102,4 +103,23 @@ class TransactionManagement extends Component {
     }
 }
 
-export default TransactionManagement;
+
+const mapStateToProps = (state) => {
+    return {
+        transactionData: state.fetchReducer.FetchAction.transactionData
+
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        TransactionData: (data) => {
+            dispatch({
+                type: 'GETALLTRANSACTION',
+                JsonData: data
+            })
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (TransactionManagement);

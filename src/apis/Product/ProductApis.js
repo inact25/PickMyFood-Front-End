@@ -40,3 +40,12 @@ export const addStoreProduct = async (uid,data) => {
 
     return await res.data;
 };
+
+export const deleteStoreProduct = async (uid) => {
+    const res = await axios.delete(`/product/delete/${uid}`,{
+        headers: {
+            token:authToken
+        }
+    })
+    return await res.data
+}
