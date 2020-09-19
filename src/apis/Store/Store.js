@@ -1,8 +1,13 @@
 import axios from "axios"
 import {authToken} from "../Auth/AuthApis";
 
-export const getAllStores = async () => {
+export const getActiveStores = async () => {
     const res = await axios.get("/stores")
+    return await res.data.data;
+};
+
+export const getNonactiveStores = async () => {
+    const res = await axios.get("/stores/NA")
     return await res.data.data;
 };
 

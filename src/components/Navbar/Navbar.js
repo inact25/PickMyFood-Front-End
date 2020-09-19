@@ -38,6 +38,13 @@ class Navbar extends Component {
 
     };
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.restData !== this.state.restData) {
+            this.getAdminProfile(localStorage.getItem('uid'))
+        }
+    }
+
+
     componentDidMount() {
         this.getAdminProfile(localStorage.getItem('uid'))
     }
@@ -45,9 +52,6 @@ class Navbar extends Component {
     render() {
         const {onLogout} = this.props.logout
         const data = this.state.restData
-        console.log(data)
-        console.log("stimage")
-        console.log(data.storeImage)
         return (
             <nav className="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
                 <div className="w-100 d-none d-md-flex d-lg-flex"/>

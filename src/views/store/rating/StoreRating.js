@@ -19,7 +19,6 @@ class StoreRating extends Component {
                     isLoaded: true
                 })
             }).catch((e) => {
-                console.log(e)
             Swal.fire("Oops", "Connection Timeout !!!", "error")
         })
     }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import FeedbackCard from "../../components/cards/FeedbackCard";
+import imageLoader from "../../assets/img/loader/loader2.gif";
 
 class FeedbackData extends Component {
     render() {
@@ -7,6 +8,8 @@ class FeedbackData extends Component {
 
         return (
             <>
+                {data !== null ?
+                    <>
                 {data.map((feedback) =>
 
                     <div className="col-6">
@@ -16,6 +19,11 @@ class FeedbackData extends Component {
                             data={feedback.feedbackValue}/>
                     </div>
                 )}
+                </>
+                    : <div className="text-center">
+                        <img width="150px" src={imageLoader} alt="loading"/>
+                        <p>loading...</p>
+                    </div> }
             </>
         );
     }

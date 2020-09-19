@@ -7,12 +7,15 @@ const cookies = new Cookies();
 export const authToken = localStorage.getItem('utoken')
 export const bToken = cookies.get('btoken')
 
+
+export const baseUrl = "/squad6/api"
+
 export const AuthApis = async (user, password) => {
     const userData = {
         username: user,
         password:password
     }
-    let result = await axios.post(`/user/login`,  userData )
+    let result = await axios.post(`${baseUrl}/user/login`,  userData )
     return result.data
 }
 
@@ -21,12 +24,12 @@ export const StoreLogin = async (user, password) => {
         storeUsername: user,
         storePassword: password
     }
-    let result = await axios.post(`/store/login`,  userData )
+    let result = await axios.post(`${baseUrl}/store/login`,  userData )
     return result.data
 }
 
 export const storeRegister = async (data) => {
-    let res = await axios.post('/store/register',{
+    let res = await axios.post(`${baseUrl}/store/register`,{
         storeName : data.storeName.toString(),
         storeAddress : data.storeAddress,
         storeOwner : data.storeOwner.toString(),

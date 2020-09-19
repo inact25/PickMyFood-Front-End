@@ -6,6 +6,7 @@ import StoreRegisterLayout from "../views/Frontline/StoreRegisterLayout";
 import StoreLoginLayout from "../views/Frontline/StoreLoginLayout";
 import Feedbacks from "../views/store/Feedback/Feedbacks";
 import StoreRating from "../views/store/rating/StoreRating";
+import Stats from "../views/admin/Stats/Stats";
 
 class RouteLink extends Component {
     render() {
@@ -16,7 +17,7 @@ class RouteLink extends Component {
                     <Route exact path="/devmas" component={AdminLoginLayout}/>
                     <Route exact path="/login" component={StoreLoginLayout}/>
                     <Route exact path="/register" component={StoreRegisterLayout}/>
-                    <Route exact component={StoreRating}/>
+                    <Route exact component={Stats}/>
                 </Switch>
         );
     }

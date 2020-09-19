@@ -3,7 +3,7 @@ import AllStoreData from "../../../variables/admin/AllStoreData";
 import Pagination from "../../../components/Pagination/Pagination";
 import StoreSearch from "../../../variables/admin/StoreSearch";
 import Swal from "sweetalert2";
-import {getAllStores, getStoreProfile} from "../../../apis/Store/Store";
+import {getActiveStores, getNonactiveStores} from "../../../apis/Store/Store";
 import {connect} from "react-redux";
 import imageLoader from "../../../assets/img/loader/loader2.gif";
 import withReactContent from 'sweetalert2-react-content'
@@ -31,12 +31,25 @@ class StoreManagement extends Component {
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.allStoreData !== this.props.allStoreData) {
-            this.getAllStoresData()
+            this.getActiveStoresData()
         }
     }
 
+    getActiveStoresData = () => {
+        getActiveStores()
+            .then((res) => {
+                this.props.StoreListData(res)
+                this.setState({
+                    isLoaded: true,
+                });
+            })
+            .catch(() => {
+                Swal.fire("Oops", "Connection Timeout !!!", "error")
+            });
+    };
+
     getAllStoresData = () => {
-        getAllStores()
+        getNonactiveStores()
             .then((res) => {
                 this.props.StoreListData(res)
                 this.setState({
@@ -49,7 +62,7 @@ class StoreManagement extends Component {
     };
 
     componentDidMount() {
-        this.getAllStoresData()
+        this.getActiveStoresData()
     }
 
     render() {
