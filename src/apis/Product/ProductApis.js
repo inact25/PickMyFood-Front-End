@@ -1,8 +1,9 @@
 import axios from "axios";
 import {authToken} from "../Auth/AuthApis";
+import {baseUrl} from "../Base/Configs";
 
 export const updateProduct = async (uid, data) => {
-    let res = await axios.put(`/product/update/${uid}`, {
+    let res = await axios.put(`${baseUrl}/product/update/${uid}`, {
         productName: data.productName.toString(),
         productStock: data.productStock.toString(),
         productStatus: data.productStatus.toString(),
@@ -40,6 +41,26 @@ export const addStoreProduct = async (uid,data) => {
 
     return await res.data;
 };
+export const getActiveProductStore = async (uid) => {
+    const res = await axios.get(`${baseUrl}/products/${uid}`)
+    return await res.data.data;
+};
+
+export const getDeletedProductStore = async (uid)=>{
+    const res = await axios.get(`${baseUrl}/products/NA/${uid}`)
+    return await res.data.data;
+}
+
+export const reactiveProductStore = async (uid) => {
+    console.log("api")
+    console.log(uid)
+    const res = await axios.put(`${baseUrl}/product/changeActive/${uid}`,{
+        headers: {
+            token:authToken
+        }
+    })
+    return await res.data.data
+}
 
 export const deleteStoreProduct = async (uid) => {
     const res = await axios.delete(`/product/delete/${uid}`,{

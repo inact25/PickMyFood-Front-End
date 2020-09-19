@@ -1,33 +1,32 @@
 import axios from "axios"
 import {authToken} from "../Auth/AuthApis";
+import {baseUrl} from "../Base/Configs";
 
 export const getActiveStores = async () => {
-    const res = await axios.get("/stores")
+    const res = await axios.get(`${baseUrl}/stores`)
     return await res.data.data;
 };
+
 
 export const getNonactiveStores = async () => {
-    const res = await axios.get("/stores/NA")
+    const res = await axios.get(`${baseUrl}/stores/NA`)
     return await res.data.data;
 };
 
-export const getProductStore = async (uid) => {
-    const res = await axios.get(`/products/${uid}`)
-    return await res.data.data;
-};
+
 
 export const getSpecificProduct = async (uid) =>{
-    const res = await axios.get((`/product/${uid}`))
+    const res = await axios.get((`${baseUrl}/product/${uid}`))
     return await res.data.data
 };
 
 export const getStoreProfile = async (uid) => {
-    let res = await axios.get(`/store/${uid}`)
+    let res = await axios.get(`${baseUrl}store/${uid}`)
     return await res.data.data;
 };
 
 export const updateStoreProfile = async (uid, data) => {
-    let res = await axios.put(`/store/update/${uid}`, {
+    let res = await axios.put(`${baseUrl}/store/update/${uid}`, {
         storeName:data.storeName.toString(),
         storeAddress:data.storeAddress.toString(),
         storeOwner:data.storeOwner.toString(),

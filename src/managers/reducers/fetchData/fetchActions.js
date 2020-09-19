@@ -1,19 +1,4 @@
-const initialState = {
-    selectedStore:"",
-    adminData: [],
-    userData:[],
-    allUserData: [],
-    allStoreData:[],
-    storeCategoryData:[],
-    productCategoryData:[],
-    allfeedbackData:[],
-    storeProductData:[],
-    storeRatingData:[],
-    topupData:[],
-    transactionData:[]
-
-
-}
+import {initialState} from '../initialState/reduxState'
 
 const FetchAction = (state = initialState, action) => {
     switch (action.type) {

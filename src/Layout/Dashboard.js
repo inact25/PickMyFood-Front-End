@@ -17,7 +17,7 @@ import ProductManagement from "../views/store/ProductManagement/ProductManagemen
 import OrderManagement from "../views/store/OrderManagement/OrderManagement";
 import TransactionManagement from "../views/store/Transaction/TransactionManagement";
 import StoreFooter from "../components/Footer/StoreFooter";
-import TopupManagement from "../views/store/topup/TopupManagement";
+import TopupManagement from "../views/admin/topup/TopupManagement";
 import {adminSidebar, storeSidebar} from "../variables/sidebars/Sidebar";
 import {cleanCookies} from "universal-cookie/cjs/utils";
 import Feedbacks from "../views/store/Feedback/Feedbacks";

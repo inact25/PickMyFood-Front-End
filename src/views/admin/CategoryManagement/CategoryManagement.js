@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ProductCategoryTable from "../../../variables/admin/ProductCategoryTable";
-import StoreCategoryTable from "../../../variables/admin/StoreCategoryTable";
+import StoreCategoryTable from "../../../variables/store/StoreCategoryTable";
 import InputForm from "../../../components/forms/Input/InputForm";
 import {getAllProductCategory, getAllStoreCategory,addProductCategory,addStoreCategory} from "../../../apis/Categories/CategoriesApi";
 import Swal from "sweetalert2";

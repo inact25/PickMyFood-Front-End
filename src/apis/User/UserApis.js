@@ -1,13 +1,14 @@
 import axios from "axios";
 import {authToken} from "../Auth/AuthApis";
+import {baseUrl} from "../Base/Configs";
 
 export const getUserProfile = async (uid) => {
-    let res = await axios.get(`/user/${uid}`)
+    let res = await axios.get(`${baseUrl}/user/${uid}`)
     return await res.data.data;
 };
 
 export const getAllUsers = async () => { //tambain s jadi users
-    const res = await axios.get("/users?keyword=&page=0&limit=6",{
+    const res = await axios.get(`${baseUrl}/users?keyword=&page=0&limit=6`,{
         headers: {
             token:authToken
         }
@@ -16,7 +17,7 @@ export const getAllUsers = async () => { //tambain s jadi users
 };
 
 export const updateUserProfile = async (uid, data) => {
-    let res = await axios.put(`/user/update/${uid}`, {
+    let res = await axios.put(`${baseUrl}/user/update/${uid}`, {
         userFirstName: data.userFirstName.toString(),
         userLastName: data.userLastName.toString(),
         userAddress: data.userAddress.toString(),

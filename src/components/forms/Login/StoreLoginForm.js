@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom"
 import {StoreLogin} from "../../../apis/Auth/AuthApis";
 import Swal from "sweetalert2";
-import {createBrowserHistory} from "history";
+import {createBrowserHistory, createHashHistory} from "history";
 import StoreLog from '../../../assets/img/default/StoreLog.svg'
 import Cookies from "universal-cookie";
 
@@ -25,7 +25,7 @@ class StoreLoginForm extends Component {
         handleSubmit : event => {
             event.preventDefault();
             const cookies = new Cookies();
-            const history = createBrowserHistory()
+            const history = createHashHistory()
             StoreLogin(this.state.user, this.state.pass)
                 .then((res)=> {
                         Swal.fire("Good job!", "Login Successfully", "success").then(()=>{

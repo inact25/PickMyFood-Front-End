@@ -1,18 +1,19 @@
 import axios from "axios";
 import {authToken} from "../Auth/AuthApis";
+import {baseUrl} from "../Base/Configs";
 
 export const getAllStoreCategory = async () => {
-    const res = await axios.get("/storeCategories")
+    const res = await axios.get(`${baseUrl}/storeCategories`)
     return await res.data.data;
 };
 
 export const getAllProductCategory = async () => {
-    const res = await axios.get("/productCategories")
+    const res = await axios.get(`${baseUrl}/productCategories`)
     return await res.data.data;
 };
 
 export const updateProductCategory = async (id,name) => {
-    let res = await axios.put(`/productCategories/update/${id}`, {
+    let res = await axios.put(`${baseUrl}/productCategories/update/${id}`, {
         productCategoryName:name,
     })
 

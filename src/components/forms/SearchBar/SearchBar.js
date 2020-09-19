@@ -7,7 +7,7 @@ class SearchBar extends Component {
         return (
             <div>
                 <div className="row">
-                    <div className="col-9">
+                    <div className="col-8">
                         <div className="form-label-group">
                             <input type="text" id="inputData" className="form-control"
                                    placeholder={title}
@@ -15,10 +15,10 @@ class SearchBar extends Component {
                             <label htmlFor="inputData">{title}</label>
                         </div>
                     </div>
-                    <div className="col">
+                    <div className="col-4">
                         <button style={{maxHeight: "3rem"}}
                                 className="btn btn-lg btn-dark  btn-pill"
-                                type="submit"><p style={{fontSize:"1rem"}}><BiSearchAlt/></p>
+                                type="submit"><h5 className="text-white"><BiSearchAlt/></h5>
                         </button>
                     </div>
                 </div>

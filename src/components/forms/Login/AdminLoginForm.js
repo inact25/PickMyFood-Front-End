@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {AuthApis} from "../../../apis/Auth/AuthApis";
 import Swal from "sweetalert2";
-import {createBrowserHistory} from "history";
 import AdminLog from '../../../assets/img/default/adminLog.svg'
 import Cookies from 'universal-cookie';
+import {createHashHistory} from "history";
 
 
 class AdminLoginForm extends Component {
@@ -25,7 +25,7 @@ class AdminLoginForm extends Component {
         handleSubmit : event => {
             event.preventDefault();
             const cookies = new Cookies();
-            const history = createBrowserHistory()
+            const history = createHashHistory()
             AuthApis(this.state.user, this.state.pass)
                 .then((res)=> {
                     if(res.data.auth.userLevelID === 1){

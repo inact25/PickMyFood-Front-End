@@ -1,8 +1,9 @@
 import axios from "axios";
 import {authToken} from "../Auth/AuthApis";
+import {baseUrl} from "../Base/Configs";
 
 export const getStoreOrders = async (uid) => {
-    let res = await axios.get(`/orders/store/${uid}`,{
+    let res = await axios.get(`${baseUrl}/orders/store/${uid}`,{
         headers: {
             token:authToken
         }
@@ -11,7 +12,7 @@ export const getStoreOrders = async (uid) => {
 };
 
 export const getSpecificOrders = async (uid) => {
-    let res = await axios.get(`/order/${uid}`,{
+    let res = await axios.get(`${baseUrl}/order/${uid}`,{
         headers: {
             token:authToken
         }

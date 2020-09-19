@@ -2,13 +2,11 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import Cookies from "universal-cookie";
 import {cleanCookies} from "universal-cookie/cjs/utils";
+import {baseUrl} from "../Base/Configs";
 
 const cookies = new Cookies();
 export const authToken = localStorage.getItem('utoken')
 export const bToken = cookies.get('btoken')
-
-
-export const baseUrl = "/squad6/api"
 
 export const AuthApis = async (user, password) => {
     const userData = {
@@ -54,7 +52,7 @@ export const isLogin = (history) => {
             history.push('/login');
         }
     } else {
-        if (window.location.pathname !== '/login' && window.location.pathname !== '/register' && window.location.pathname !== '/devmas') {
+        if (history.location.pathname !== '/login' && history.location.pathname !== '/register' && history.location.pathname !== '/devmas') {
             Swal.fire("Oops", "You need login first", "error");
             history.push('/login');
         }

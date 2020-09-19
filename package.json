@@ -57,5 +57,6 @@
     "react-router-dom": "^5.2.0",
     "sweetalert2-react-content": "^3.1.0",
     "universal-cookie": "^4.0.3"
-  }
+  },
+  "proxy": "http://34.101.198.49/squad6/api"
 }

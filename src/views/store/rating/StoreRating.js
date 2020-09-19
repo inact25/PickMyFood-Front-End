@@ -45,8 +45,8 @@ class StoreRating extends Component {
                             <div className="col">
                                 <div className="card card-small mb-4">
                                     <div className="card-body p-0 pb-3 text-center">
-                                        <table className="table mb-0">
-                                            <thead className="bg-light">
+                                        <table className="table mb-0 ">
+                                            <thead className="bg-warning">
 
                                             <tr>
                                                 <th scope="col" className="border-0">#</th>
@@ -62,7 +62,7 @@ class StoreRating extends Component {
                                                     <td>{index+1}</td>
                                                     <td>{ratingList.userFirstname + " " + ratingList.userLastname}</td>
 
-                                                    <td style={{color:"ffb508"}}>{rate.repeat(ratingList.ratingValue)}</td>
+                                                    <td><h5  className="text-warning">{rate.repeat(ratingList.ratingValue)}</h5></td>
                                                     <td>{ratingList.ratingDescription}</td>
                                                     <td>{ratingList.ratingCreated}</td>
                                                 </tr>
