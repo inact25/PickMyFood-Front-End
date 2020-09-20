@@ -1,1 +1,1 @@
-export const baseUrl = '/squad6/api'
+export const baseUrl = ''

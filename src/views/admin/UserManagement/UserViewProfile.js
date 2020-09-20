@@ -40,7 +40,7 @@ class UserViewProfile extends Component {
     updateUserProfile = () => {
         updateUserProfile(this.state.id,this.state.userProfile)
             .then(()=>{
-                Swal.fire("Good job!", "Store Updated", "success")
+                Swal.fire("Good job!", "User Updated", "success")
             })
             .catch(()=>{
                 Swal.fire("Oops", "Connection Timeout !!!", "error")
@@ -53,7 +53,7 @@ class UserViewProfile extends Component {
         console.log(this.state.id)
         deleteUser(this.state.id)
             .then(()=>{
-                Swal.fire("Good job!", "Store Deleted", "success")
+                Swal.fire("Good job!", "User Deleted", "success")
             })
             .catch((e)=>{
                 Swal.fire("Oops", "Connection Timeout !!!", "error")

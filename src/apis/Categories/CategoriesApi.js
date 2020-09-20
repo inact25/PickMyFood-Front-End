@@ -21,7 +21,7 @@ export const updateProductCategory = async (id,name) => {
 };
 
 export const updateStoreCategory = async (id,name) => {
-    let res = await axios.put(`/storeCategories/update/${id}`, {
+    let res = await axios.put(`${baseUrl}/storeCategories/update/${id}`, {
         storeCategoryName:name,
     },{
         headers: {
@@ -33,7 +33,7 @@ export const updateStoreCategory = async (id,name) => {
 };
 
 export const addStoreCategory = async (categoryName) => {
-    const res = await axios.post("/storeCategory/add", {
+    const res = await axios.post(`${baseUrl}/storeCategory/add`, {
         storeCategoryName: categoryName.toString()
     },{
         headers: {
@@ -44,7 +44,7 @@ export const addStoreCategory = async (categoryName) => {
 }
 
 export const addProductCategory = async (categoryName) => {
-    const res = await axios.post("/productCategory/add", {
+    const res = await axios.post(`${baseUrl}/productCategory/add`, {
         productCategoryName: categoryName.toString()
     },{
         headers: {

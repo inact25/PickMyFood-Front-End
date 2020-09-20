@@ -19,7 +19,7 @@ export const getSpecificProduct = async (uid) =>{
 };
 
 export const getStoreProfile = async (uid) => {
-    let res = await axios.get(`${baseUrl}store/${uid}`)
+    let res = await axios.get(`${baseUrl}/store/${uid}`)
     return await res.data.data;
 };
 
@@ -41,7 +41,7 @@ export const updateStoreProfile = async (uid, data) => {
 };
 
 export const deleteStore = async (uid) => {
-    const res = await axios.delete(`/store/delete/${uid}`,{
+    const res = await axios.delete(`${baseUrl}/store/delete/${uid}`,{
         headers: {
             token:authToken
         }

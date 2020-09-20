@@ -23,7 +23,7 @@ export const updateProduct = async (uid, data) => {
 };
 
 export const addStoreProduct = async (uid,data) => {
-    const res = await axios.post(`/product/add/${uid}`,{
+    const res = await axios.post(`${baseUrl}/product/add/${uid}`,{
         productName:data.productName.toString(),
         productCategory:{
             productCategoryID:data.productCategory.productCategoryID.toString()
@@ -65,7 +65,7 @@ export const reactiveProductStore = async (uid) => {
 }
 
 export const deleteStoreProduct = async (uid) => {
-    const res = await axios.delete(`/product/delete/${uid}`,{
+    const res = await axios.delete(`${baseUrl}/product/delete/${uid}`,{
         headers: {
             token:authToken
         }

@@ -55,7 +55,7 @@ export const updateUserProfile = async (uid, data) => {
 export const deleteUser = async (uid) => {
     console.log("apis")
     console.log(uid)
-    const res = await axios.delete(`/user/delete/${uid}`,{
+    const res = await axios.delete(`${baseUrl}/user/delete/${uid}`,{
         headers: {
             token:authToken
         }

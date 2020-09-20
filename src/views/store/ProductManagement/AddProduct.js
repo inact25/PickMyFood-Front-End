@@ -126,10 +126,8 @@ class AddProduct extends Component {
                                         <div className="card-body text-center">
                                             <div className="mb-3 mx-auto">
                                                 <img style={{
-                                                    width: "120px",
-                                                    height: "120px",
                                                     objectFit: "cover"
-                                                }} className="rounded-circle"
+                                                }} className="rounded-circle img-fluid"
                                                      src={data.productImage === undefined ? "https://res.cloudinary.com/shomai/image/upload/v1599674781/pickMyFood/foodDefault_qxtdws.png" : data.productImage}
                                                      alt="User Avatar" width="110"/>
                                             </div>

@@ -4,7 +4,7 @@ import {getAllStoreCategory} from "../../../apis/Categories/CategoriesApi";
 import Swal from "sweetalert2";
 import imageLoader from "../../../assets/img/loader/loader2.gif";
 import {storeRegister} from "../../../apis/Auth/AuthApis";
-import {createBrowserHistory} from "history";
+import {createBrowserHistory, createHashHistory} from "history";
 
 class RegisterForm extends Component {
     state = {
@@ -16,7 +16,7 @@ class RegisterForm extends Component {
         registerAccount : event => {
             event.preventDefault();
             const data = this.state.registerData
-            const history = createBrowserHistory()
+            const history = createHashHistory()
             storeRegister(data)
                 .then(() => {
                     Swal.fire("Good job!", "Register Succesfull", "success").then(()=>{
