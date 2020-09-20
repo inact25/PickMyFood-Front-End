@@ -97,7 +97,6 @@ class CategoryManagement extends Component {
             });
     };
 
-
     componentDidMount() {
         this.getAllProductCategory()
         this.getAllSoreCategory()
