@@ -140,10 +140,10 @@ class StoreOwnerProfile extends Component {
                                         <div className="card-header border-bottom text-center">
                                             <div className="mb-3 mx-auto">
                                                 <img style={{
-                                                    width: "120px",
-                                                    height: "120px",
+                                                    height: "8rem",
+                                                    width: "8rem",
                                                     objectFit: "cover"
-                                                }} className="rounded-circle"
+                                                }} className="rounded-circle img-fluid"
                                                      src={data.storeImage}
                                                      alt="User Avatar" width="110"/>
                                             </div>

@@ -10,7 +10,8 @@ import AdminSidebar from "../Sidebar/AdminSidebar";
 class Navbar extends Component {
     state = {
         restData:[],
-        isLoaded:false
+        isLoaded:false,
+        count:null
     }
 
     popupMenu = () =>{
@@ -41,6 +42,12 @@ class Navbar extends Component {
             },
             position:'bottom'
         },)
+    }
+
+    resetCount=()=>{
+        this.setState({
+            count:null
+        })
     }
 
     getAdminProfile = (id) => {
@@ -90,12 +97,12 @@ class Navbar extends Component {
                 <div className="w-100 d-none d-md-flex d-lg-flex"/>
                 <ul className="navbar-nav border-left flex-row ">
 
-                    <li className="nav-item border-right dropdown notifications">
+                    <li className="nav-item border-right dropdown notifications" style={{display:"none"}}>
                         <a className="nav-link nav-link-icon text-center" href="#" role="button" id="dropdownMenuLink"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div className="nav-link-icon__wrapper">
-                                <h4><IoMdNotificationsOutline/></h4>
-                                <span className="badge badge-pill badge-danger"/>
+                            <div className="nav-link-icon__wrapper" >
+                                <h4><a onClick={()=>this.resetCount()}><IoMdNotificationsOutline/></a></h4>
+                                <span className="badge badge-pill badge-danger">{this.state.count}</span>
                             </div>
                         </a>
                         <div className="dropdown-menu dropdown-menu-small" aria-labelledby="dropdownMenuLink">
@@ -135,6 +142,7 @@ class Navbar extends Component {
         );
     }
 }
+
 
 
 export default Navbar;

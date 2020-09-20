@@ -144,7 +144,9 @@ class ProductDetail extends Component {
                                 <div className="card-body text-center">
                                     <div className="mb-3 mx-auto">
                                         <img style={{
-                                            objectFit: "cover"
+                                            objectFit: "cover",
+                                            height: "8rem",
+                                            width: "8rem"
                                         }} className="rounded-circle img-fluid"
                                              src={data.productImage}
                                              alt="User Avatar" width="110"/>

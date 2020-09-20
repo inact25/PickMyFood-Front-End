@@ -49,8 +49,6 @@ class UserViewProfile extends Component {
 
 
     deleteUser = () => {
-        console.log("id")
-        console.log(this.state.id)
         deleteUser(this.state.id)
             .then(()=>{
                 Swal.fire("Good job!", "User Deleted", "success")
@@ -108,10 +106,10 @@ class UserViewProfile extends Component {
                                 <div className="card-header border-bottom text-center">
                                     <div className="mb-3 mx-auto">
                                         <img style={{
-                                            width: "120px",
-                                            height: "120px",
+                                            height: "8rem",
+                                            width: "8rem",
                                             objectFit: "cover"
-                                        }} className="rounded-circle"
+                                        }} className="rounded-circle img-fluid"
                                              src={data.userImage}
                                              alt="User Avatar" width="110"/>
                                     </div>
