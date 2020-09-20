@@ -22,6 +22,7 @@ import {adminSidebar, storeSidebar} from "../variables/sidebars/Sidebar";
 import {cleanCookies} from "universal-cookie/cjs/utils";
 import Feedbacks from "../views/store/Feedback/Feedbacks";
 import StoreRating from "../views/store/rating/StoreRating";
+import swal from "sweetalert2"
 
 class Dashboard extends Component {
     state = {
@@ -31,6 +32,7 @@ class Dashboard extends Component {
 
     onNavSelected = (e) => {
         const data = e.target
+        swal.close()
         switch (data.id) {
             case "4b08d55efc31e06abc63f2901bfb273b":
                 this.setState({
@@ -146,13 +148,21 @@ class Dashboard extends Component {
                         }
                         <main className="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
                             <div className="main-navbar sticky-top bg-white">
-                                <Navbar selected={this} logout={this}/>
+
+                                {localStorage.getItem('ustype') !== '0' ?
+                                    <Navbar
+                                        data={adminSidebar}
+                                        logout={this}
+                                        selected={this.onNavSelected}
+                                    />
+                                    : <Navbar data={storeSidebar}  logout={this}  selected={this.onNavSelected}/>
+                                }
                             </div>
                             <div className="main-content-container container-fluid px-4">
                                 <Header title= {this.state.title}/>
                                 {this.state.view}
                             </div>
-                            {localStorage.getItem('ustype') !== '1' ?
+                            {localStorage.getItem('ustype') !== '0' ?
                                 <AdminFooter data={adminSidebar} selected={this.onNavSelected}/>
                                 :
                                 <StoreFooter data={storeSidebar} selected={this.onNavSelected}/>

@@ -116,7 +116,7 @@ class AdminProfile extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        adminData: state.fetchReducer.FetchAction.adminData
+        adminData: state.userReducer.UserAction.adminData
     }
 }
 

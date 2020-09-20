@@ -4,7 +4,7 @@ import '../../../assets/css/Dashboard.css'
 import '../../../assets/css/Login.css'
 import {downloadQRStoreImage, getQRStoreImage} from "../../../apis/Base/QRApis";
 import Swal from "sweetalert2";
-import {deleteStore, getStoreProfile, updateStoreProfile} from "../../../apis/Store/Store";
+import {deleteStore, getStoreProfile, updateStoreProfile} from "../../../apis/Store/StoreApi";
 import imageLoader from "../../../assets/img/loader/loader2.gif";
 import {UploadApis} from "../../../apis/Base/UploadApis";
 import {getAllStoreCategory} from "../../../apis/Categories/CategoriesApi";
@@ -174,9 +174,9 @@ class StoreViewProfile extends Component {
                                     <li className="list-group-item p-4">
                                         <strong className="text-muted d-block mb-2">Status</strong>
                                         <div className="form-label-group">
-                                                            <button style={{borderRadius: "1rem", minHeight: "98px"}}
+                                                            <div style={{borderRadius: "1rem", minHeight: "98px"}}
                                                                       name="storeStatus"
-                                                                      className="form-control btn btn-warning font-weight-bold"><h1 style={{color:"white"}}>{data.storeStatus}</h1></button>
+                                                                      className="form-control btn btn-warning font-weight-bold"><h1 style={{color:"white"}}>{data.storeStatus}</h1></div>
                                         </div>
                                     </li>
                                 </ul>

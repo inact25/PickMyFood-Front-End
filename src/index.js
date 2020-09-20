@@ -7,6 +7,7 @@ import $ from 'jquery';
 import Popper from 'popper.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap'
+import 'animate.css'
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';

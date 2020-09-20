@@ -6,7 +6,7 @@ class InputForm extends Component {
         const {title,id,name,handleChange,value,submit,isAdding} = this.props
         return (
             <div className="row">
-                <div className="col-8">
+                <div className="col-lg-8 col-md-8 col-sm-12">
                     <div className="form-label-group">
                         <input type="text"
                                id={id}
@@ -21,9 +21,9 @@ class InputForm extends Component {
                         <label htmlFor={id}>{title}</label>
                     </div>
                 </div>
-                <div className="col-4">
-                    <button style={{borderRadius: "10rem", maxHeight: "3rem"}}
-                            className="btn btn-lg btn-outline-dark btn-block"
+                <div className="col-lg-4 col-md-4 col-sm-12">
+                    <button style={{ maxHeight: "3rem"}}
+                            className="btn btn-lg btn-outline-dark btn-pill btn-block"
                             type="submit"
                             disabled={isAdding}
                     onClick={()=>submit()}><p style={{fontSize:"1rem"}}><GrAddCircle/></p>

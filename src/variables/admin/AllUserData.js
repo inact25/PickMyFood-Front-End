@@ -8,7 +8,6 @@ class AllUserData extends Component {
         return (
             <>
                 <div className="row">
-
                     {data.map(userList =>
                         <div className="col-lg-3 col-md-6 col-sm-12">
                             <ListCard id={userList.userID} name={userList.userFirstName + " " + userList.userLastName} type={type}

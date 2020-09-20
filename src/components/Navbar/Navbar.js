@@ -2,12 +2,45 @@ import React, {Component} from 'react';
 import {IoMdNotificationsOutline} from 'react-icons/io'
 import Swal from "sweetalert2";
 import {getAdminProfile} from "../../apis/Admin/Admin";
-import {getStoreProfile} from "../../apis/Store/Store";
+import {getStoreProfile} from "../../apis/Store/StoreApi";
+import {GiHamburgerMenu} from "react-icons/gi";
+import withReactContent from "sweetalert2-react-content";
+import AdminSidebar from "../Sidebar/AdminSidebar";
 
 class Navbar extends Component {
     state = {
         restData:[],
         isLoaded:false
+    }
+
+    popupMenu = () =>{
+        const MySwal = withReactContent(Swal)
+        const {data, selected} = this.props
+        MySwal.fire({
+            html: (
+                <>
+                    <div className="nav-wrapper">
+                        <ul className="nav flex-column">
+                            {data.map((link)=>
+                                <li className="nav-item">
+                                    <a title={link.desc} className="nav-link" id={link.id} onClick={(e)=>selected(e)}>
+                                        {link.name} </a>
+                                </li>
+                            )}
+                        </ul>
+                    </div>
+                </>
+            ),
+            showCloseButton:false,
+            showConfirmButton:false,
+            showClass:{
+                popup : 'animate__animated animate__fadeInUpBig'
+            },
+            hideClass:{
+                popup : 'animate__animated animate__fadeOutDownBig'
+            },
+            position:'bottom'
+        },)
     }
 
     getAdminProfile = (id) => {
@@ -93,11 +126,9 @@ class Navbar extends Component {
                     </li>
                 </ul>
                 <nav className="nav">
-                    <a href="#"
-                       className="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left"
-                       data-toggle="collapse" data-target=".header-navbar" aria-expanded="false"
-                       aria-controls="header-navbar">
-                        <i className="material-icons">&#xE5D2;</i>
+                    <a onClick={this.popupMenu}
+                       className="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left">
+                        <i><GiHamburgerMenu/></i>
                     </a>
                 </nav>
             </nav>

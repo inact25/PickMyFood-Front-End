@@ -87,3 +87,9 @@ body {
 input#file {
     display: none;
 }
+@media (min-width: 767.98px) {
+    nav.nav {
+        display: none !important;
+    }
+}
+

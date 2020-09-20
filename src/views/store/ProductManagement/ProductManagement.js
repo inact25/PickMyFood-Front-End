@@ -3,7 +3,7 @@ import StoreSearch from "../../../variables/store/StoreSearch";
 import Swal from "sweetalert2";
 import imageLoader from "../../../assets/img/loader/loader2.gif";
 import notFound from "../../../assets/img/default/notfound.svg";
-import {getActiveProductStore, getDeletedProductStore,reactiveProductStore} from "../../../apis/Product/ProductApis";
+import {getActiveProductStore, getDeletedProductStore, reactiveProductStore} from "../../../apis/Product/ProductApis";
 import withReactContent from "sweetalert2-react-content";
 import ProductDetail from "./ProductDetail";
 import AddProduct from "./AddProduct";
@@ -24,8 +24,9 @@ class ProductManagement extends Component {
         })
     }
 
-    cardPopupChange =(e) => {
+    cardPopupChange = (e) => {
         const id = e.target.id
+        console.log("id" + id)
         const myswal = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success btn-pill m-1',
@@ -43,16 +44,18 @@ class ProductManagement extends Component {
         }).then((result) => {
             if (result.isConfirmed) {
                 reactiveProductStore(id)
-                    .then(()=>{
+                    .then(() => {
                             myswal.fire(
                                 'Restored!',
                                 'Product has been restored.',
                                 'success'
                             )
 
-                    }
-                        ).catch((e)=>{Swal.fire("Oops", "Connection Timeout !!!", "error")
-                        console.log(e)} )
+                        }
+                    ).catch((e) => {
+                    Swal.fire("Oops", "Connection Timeout !!!", "error")
+                    console.log(e)
+                })
 
 
             }
@@ -165,25 +168,31 @@ class ProductManagement extends Component {
                         <>
                             <hr/>
                             {this.state.switch === 0 ?
-                                <div className="row">
+                                <>
                                     {ActiveData.length !== 0 ?
-                                        <ProductList data={ActiveData} popup={this.cardPopupRead} restore={this.cardPopupChange}/>
+                                        <div className="row">
+                                            <ProductList data={ActiveData} popup={this.cardPopupRead}
+                                                         restore={this.cardPopupChange}/>
+                                        </div>
                                         : <div className="text-center mb-5 mt-5">
                                             <img width="150px" src={notFound} alt="loading"/>
                                             <p>no data</p>
                                         </div>
                                     }
-                                </div>
+                                </>
                                 :
-                                <div className="row">
+                                <>
                                     {DeletedData.length !== 0 ?
-                                        <ProductList data={DeletedData} popup={this.cardPopupRead} restore={this.cardPopupChange}/>
+                                        <div className="row">
+                                            <ProductList data={DeletedData} popup={this.cardPopupRead}
+                                                         restore={this.cardPopupChange}/>
+                                        </div>
                                         : <div className="text-center mb-5 mt-5">
                                             <img width="150px" src={notFound} alt="loading"/>
                                             <p>no data</p>
                                         </div>
                                     }
-                                </div>
+                                </>
                             }
                         </>
                         : <div className="text-center">

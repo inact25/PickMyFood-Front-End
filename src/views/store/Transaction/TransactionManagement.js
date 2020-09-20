@@ -6,6 +6,7 @@ import withReactContent from "sweetalert2-react-content";
 
 import Invoice from "../OrderManagement/Invoice";
 import {connect} from "react-redux";
+import notFound from "../../../assets/img/default/notfound.svg";
 class TransactionManagement extends Component {
     state = {
         id: localStorage.getItem('uid'),
@@ -57,6 +58,7 @@ class TransactionManagement extends Component {
                 {this.state.isLoaded ?
                     <>
                         <div className="card-body border-bottom">
+                            {data.length !== 0 ?
                             <div className="row">
                                 {data.map(transactionList =>
                                     <div className="col-lg-2 col-md-4 col-sm-6 align-content-center cardHoov">
@@ -65,10 +67,8 @@ class TransactionManagement extends Component {
                                             <div className="card-body text-center">
                                                 <div className="mb-3 mx-auto">
                                                     <img style={{
-                                                        width: "125px",
-                                                        height: "125px",
                                                         objectFit: "cover"
-                                                    }} className="rounded-circle"
+                                                    }} className="rounded-circle img-fluid"
                                                          src="https://image.freepik.com/free-vector/online-food-order_18591-36097.jpg"
                                                          alt="User Avatar"/>
                                                 </div>
@@ -90,6 +90,11 @@ class TransactionManagement extends Component {
                                     </div>
                                 )}
                             </div>
+                                : <div className="text-center mb-5 mt-5">
+                                    <img width="150px" src={notFound} alt="loading"/>
+                                    <p>no data</p>
+                                </div>
+                            }
                         </div>
                     </>
 

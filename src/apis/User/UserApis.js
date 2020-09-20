@@ -7,7 +7,7 @@ export const getUserProfile = async (uid) => {
     return await res.data.data;
 };
 
-export const getAllUsers = async () => { //tambain s jadi users
+export const getActiveUsers = async () => { //tambain s jadi users
     const res = await axios.get(`${baseUrl}/users?keyword=&page=0&limit=6`,{
         headers: {
             token:authToken
@@ -15,6 +15,24 @@ export const getAllUsers = async () => { //tambain s jadi users
     })
     return await res.data.data;
 };
+
+export const getDeletedUsers = async () => { //tambain s jadi users
+    const res = await axios.get(`${baseUrl}/users/NA?keyword=&page=0&limit=6`,{
+        headers: {
+            token:authToken
+        }
+    })
+    return await res.data.data;
+};
+
+export const reactiveUser = async (uid) => {
+    const res = await axios.put(`${baseUrl}/user/changeActive/${uid}`,{},{
+        headers: {
+            token:authToken
+        }
+    })
+    return await res.data.data
+}
 
 export const updateUserProfile = async (uid, data) => {
     let res = await axios.put(`${baseUrl}/user/update/${uid}`, {

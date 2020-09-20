@@ -1,10 +1,10 @@
 export const initialState = {
     adminData: [],
     userData: [],
-    allUserData: [],
-    allStoreData: [],
-    storeCategoryData: [],
-    productCategoryData: [],
+    activeUserData: [],
+    deletedUserData: [],
+
+
     allfeedbackData: [],
     storeRatingData: [],
     topupData: [],
@@ -12,4 +12,9 @@ export const initialState = {
 
     storeActiveProductData: [],
     storeDeletedProductData: [],
+    productCategoryData: [],
+
+    activeStoreData: [],
+    deletedStoreData: [],
+    storeCategoryData: [],
 }

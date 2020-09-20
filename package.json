@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "animate.css": "^4.1.1",
     "apexcharts": "^3.20.2",
     "bootstrap": "^4.5.2",
     "chart.js": "^2.9.3",
@@ -30,7 +31,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build":"set PUBLIC_URL=/squad6 react-scripts build",
+    "build": "set PUBLIC_URL=/squad6 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

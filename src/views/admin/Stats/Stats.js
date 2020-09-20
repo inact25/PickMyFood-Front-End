@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Bar, Doughnut,Bubble,Line,Polar} from 'react-chartjs-2';
-import {getActiveStores} from "../../../apis/Store/Store";
+import {getActiveStores} from "../../../apis/Store/StoreApi";
 import Swal from "sweetalert2";
 import {connect} from "react-redux";
-import {getAllUsers} from "../../../apis/User/UserApis";
+import {getActiveUsers} from "../../../apis/User/UserApis";
 import {getTopupList} from "../../../apis/Wallet/WalletApi";
 
 class Stats extends Component {
@@ -40,7 +40,7 @@ class Stats extends Component {
     };
 
     getAllUsersData = () => {
-        getAllUsers()
+        getActiveUsers()
             .then((res) => {
                 this.props.UserListData(res)
                 this.setState({
@@ -87,8 +87,6 @@ class Stats extends Component {
         const storeCount = this.props.allStoreData.length
         const userCount = this.props.allUsersData.length
         const topupCount = this.props.topupData.length
-
-
 
         return (
             <div className="row">

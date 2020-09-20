@@ -54,7 +54,9 @@ export const getDeletedProductStore = async (uid)=>{
 export const reactiveProductStore = async (uid) => {
     console.log("api")
     console.log(uid)
-    const res = await axios.put(`${baseUrl}/product/changeActive/${uid}`,{
+    console.log("token")
+    console.log(authToken)
+    const res = await axios.put(`${baseUrl}/product/changeActive/${uid}`,{},{
         headers: {
             token:authToken
         }

@@ -3,17 +3,62 @@ import AllStoreData from "../../../variables/store/AllStoreData";
 import Pagination from "../../../components/Pagination/Pagination";
 import StoreSearch from "../../../variables/store/StoreSearch";
 import Swal from "sweetalert2";
-import {getActiveStores, getNonactiveStores} from "../../../apis/Store/Store";
+import {getActiveStores, getNonactiveStores} from "../../../apis/Store/StoreApi";
 import {connect} from "react-redux";
 import imageLoader from "../../../assets/img/loader/loader2.gif";
 import withReactContent from 'sweetalert2-react-content'
 import StoreViewProfile from "./StoreViewProfile";
 import {RiDeleteBin6Line, RiStore2Line} from "react-icons/ri";
+import {reactiveStore} from "../../../apis/Store/StoreApi";
 
 class StoreManagement extends Component {
 
     state = {
         isLoaded: false,
+        switch:0
+    }
+
+    switch = (e) => {
+        this.setState({
+            switch: parseInt(e.target.id)
+        })
+    }
+
+    cardPopupChange = (e) => {
+        const id = e.target.id
+        const myswal = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success btn-pill m-1',
+                cancelButton: 'btn btn-danger btn-pill m-1'
+            },
+            buttonsStyling: false
+        })
+        myswal.fire({
+            title: 'Wanna reactive this store ?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, restore it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                reactiveStore(id)
+                    .then(() => {
+                            myswal.fire(
+                                'Actived!',
+                                'Store has been reactived.',
+                                'success'
+                            )
+
+                        }
+                    ).catch((e) => {
+                    Swal.fire("Oops", "Connection Timeout !!!", "error")
+                })
+
+
+            }
+        })
+
     }
 
 
@@ -32,15 +77,18 @@ class StoreManagement extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.allStoreData !== this.props.allStoreData) {
+        if (prevProps.activeStoreData !== this.props.activeStoreData) {
             this.getActiveStoresData()
+        }
+        if (prevProps.deletedStoreData !== this.props.deletedStoreData) {
+            this.getDeletedStoresData()
         }
     }
 
     getActiveStoresData = () => {
         getActiveStores()
             .then((res) => {
-                this.props.StoreListData(res)
+                this.props.StoreActiveData(res)
                 this.setState({
                     isLoaded: true,
                 });
@@ -50,10 +98,10 @@ class StoreManagement extends Component {
             });
     };
 
-    getAllStoresData = () => {
+    getDeletedStoresData = () => {
         getNonactiveStores()
             .then((res) => {
-                this.props.StoreListData(res)
+                this.props.StoreDeletedData(res)
                 this.setState({
                     isLoaded: true,
                 });
@@ -65,10 +113,12 @@ class StoreManagement extends Component {
 
     componentDidMount() {
         this.getActiveStoresData()
+        this.getDeletedStoresData()
     }
 
     render() {
-        const allStore = this.props.allStoreData
+        const activeStore = this.props.activeStoreData
+        const deletedStore = this.props.deletedStoreData
         return (
             <>
                 <div className="card card-small mb-4 pt-3">
@@ -98,13 +148,20 @@ class StoreManagement extends Component {
                                         </div>
                                     </div>
                                 </div>
-
                                 <hr/>
-                                <AllStoreData data={allStore}
+                                {this.state.switch !== 1 ?
+                                <AllStoreData data={activeStore}
                                               load={this.state.isLoaded}
                                               dataPopup={this.cardPopupRead}
 
                                 />
+                                :
+                                    <AllStoreData data={deletedStore}
+                                                  load={this.state.isLoaded}
+                                                  dataPopup={this.cardPopupChange}
+
+                                    />
+                                }
                             </div>
                             <div className="card-footer">
                                 <Pagination/>
@@ -122,16 +179,23 @@ class StoreManagement extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        allStoreData: state.fetchReducer.FetchAction.allStoreData
+        activeStoreData: state.storeReducer.StoreAction.activeStoreData,
+        deletedStoreData: state.storeReducer.StoreAction.deletedStoreData
 
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        StoreListData: (data) => {
+        StoreActiveData: (data) => {
             dispatch({
-                type: 'GETALLSTORES',
+                type: 'GETACTIVESTORES',
+                JsonData: data
+            })
+        },
+        StoreDeletedData: (data) => {
+            dispatch({
+                type: 'GETDELETEDSTORES',
                 JsonData: data
             })
         }

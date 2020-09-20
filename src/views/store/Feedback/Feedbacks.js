@@ -25,6 +25,12 @@ class Feedbacks extends Component {
         sendFeedBack(localStorage.getItem('uid'),this.state.data)
             .then(() => {
                 Swal.fire("Good job!", "Store Updated", "success")
+                this.setState(prevState => ({
+                    data: {
+                        ...prevState.data,
+                        value:""
+                    }
+                }))
             })
             .catch(() => {
                 Swal.fire("Oops", "Connection Timeout !!!", "error")

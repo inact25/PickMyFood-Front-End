@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
+import {GiHamburgerMenu} from "react-icons/gi";
 
 class StoreSidebar extends Component {
     render() {
         const {selected,data} = this.props
         return (
-            <aside className="main-sidebar col-12 col-md-3 col-lg-2 px-0">
+            <aside className="main-sidebar col-12 col-md-3 col-lg-2 px-0 header-navbar">
                 <div className="main-navbar">
                     <nav className="navbar align-items-stretch navbar-light bg-white flex-md-nowrap border-bottom p-0">
                         <Link className="navbar-brand w-100 mr-0" to="/" style={{lineHeight: "25px"}}>
@@ -14,7 +15,7 @@ class StoreSidebar extends Component {
                             </div>
                         </Link>
                         <a className="toggle-sidebar d-sm-inline d-md-none d-lg-none">
-                           asdad
+                            <i><GiHamburgerMenu/></i>
                         </a>
                     </nav>
                 </div>

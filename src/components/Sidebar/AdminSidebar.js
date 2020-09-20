@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
+import {GiHamburgerMenu} from 'react-icons/gi'
 
 class AdminSidebar extends Component {
     render() {
@@ -14,7 +15,7 @@ class AdminSidebar extends Component {
                             </div>
                         </Link>
                         <a className="toggle-sidebar d-sm-inline d-md-none d-lg-none">
-                           asdad
+                            <i><GiHamburgerMenu/></i>
                         </a>
                     </nav>
                 </div>

@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {getSpecificProduct} from "../../../apis/Store/Store";
+import {getSpecificProduct} from "../../../apis/Store/StoreApi";
 import imageLoader from "../../../assets/img/loader/loader2.gif";
 import Swal from "sweetalert2";
 import {getAllProductCategory} from "../../../apis/Categories/CategoriesApi";
-import {connect} from "react-redux";
 import {UploadApis} from "../../../apis/Base/UploadApis";
 import {deleteStoreProduct, updateProduct} from "../../../apis/Product/ProductApis";
+import {RiDeleteBin6Line} from "react-icons/ri";
+import {FiSave} from "react-icons/fi"
 
 class ProductDetail extends Component {
 
@@ -53,8 +54,6 @@ class ProductDetail extends Component {
     getSpecificProduct = () => {
         getSpecificProduct(this.state.id)
             .then((res) => {
-                console.log("res product")
-                console.log(res)
                 this.setState({
                     productDetail: res,
                     isLoaded: true
@@ -161,11 +160,6 @@ class ProductDetail extends Component {
                                                onChange={(e) => this.uploadImage(e)}
                                                placeholder="Upload Profile Image"
                                         />
-                                        <div className="text-right">
-                                            <button
-                                                className="btn btn-warning btn-pill text-white font-weight-bold">{data.productStatus}</button>
-                                        </div>
-
                                     </div>
 
                                 </div>
@@ -230,10 +224,10 @@ class ProductDetail extends Component {
                                             </div>
                                         </div>
                                         <div className="col-6">
-                                            <button onClick={()=>{this.deleteStoreProduct()}} className="btn btn-lg btn-block btn-danger btn-pill">Delete</button>
+                                            <button onClick={()=>{this.deleteStoreProduct()}} className="btn btn-lg btn-block btn-danger btn-pill"><RiDeleteBin6Line/></button>
                                         </div>
                                         <div className="col-6">
-                                            <button onClick={()=>{this.updateProduct()}} className="btn btn-lg btn-block btn-primary btn-pill">Save</button>
+                                            <button onClick={()=>{this.updateProduct()}} className="btn btn-lg btn-block btn-primary btn-pill"><FiSave/></button>
                                         </div>
                                     </div>
 

@@ -3,17 +3,15 @@ import {authToken} from "../Auth/AuthApis";
 import {baseUrl} from "../Base/Configs";
 
 export const getActiveStores = async () => {
-    const res = await axios.get(`${baseUrl}/stores`)
+    const res = await axios.get(`${baseUrl}/stores?keyword`)
     return await res.data.data;
 };
 
 
 export const getNonactiveStores = async () => {
-    const res = await axios.get(`${baseUrl}/stores/NA`)
+    const res = await axios.get(`${baseUrl}/stores/NA?keyword`)
     return await res.data.data;
 };
-
-
 
 export const getSpecificProduct = async (uid) =>{
     const res = await axios.get((`${baseUrl}/product/${uid}`))
@@ -49,6 +47,15 @@ export const deleteStore = async (uid) => {
         }
     })
     return await res.data
+}
+
+export const reactiveStore = async (uid) => {
+    const res = await axios.put(`${baseUrl}/store/changeActive/${uid}`,{},{
+        headers: {
+            token:authToken
+        }
+    })
+    return await res.data.data
 }
 
 

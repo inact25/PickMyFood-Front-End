@@ -184,8 +184,8 @@ class CategoryManagement extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        storeCategory: state.fetchReducer.FetchAction.storeCategoryData,
-        productCategory: state.fetchReducer.FetchAction.productCategoryData
+        storeCategory: state.storeReducer.StoreAction.storeCategoryData,
+        productCategory: state.productReducer.ProductAction.productCategoryData
     }
 }
 

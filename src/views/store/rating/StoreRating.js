@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import {getStoreRating} from "../../../apis/Rating/RatingApi";
 import {connect} from "react-redux";
 import imageLoader from "../../../assets/img/loader/loader2.gif";
-import {BsFillStarFill} from 'react-icons/bs'
+import notFound from "../../../assets/img/default/notfound.svg";
 
 class StoreRating extends Component {
 
@@ -41,39 +41,50 @@ class StoreRating extends Component {
             <div className="card card-small mb-4 pt-3">
                 <div className="card-body">
                     {this.state.isLoaded ?
-                        <div className="row">
-                            <div className="col">
-                                <div className="card card-small mb-4">
-                                    <div className="card-body p-0 pb-3 text-center">
-                                        <table className="table mb-0 ">
-                                            <thead className="bg-warning">
+                        <>
+                            {data !== null ?
+                                <div className="row">
 
-                                            <tr>
-                                                <th scope="col" className="border-0">#</th>
-                                                <th scope="col" className="border-0">Name</th>
-                                                <th scope="col" className="border-0">Rating</th>
-                                                <th scope="col" className="border-0">Description</th>
-                                                <th scope="col" className="border-0">Created</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            {data.map((ratingList,index) =>
-                                                <tr>
-                                                    <td>{index+1}</td>
-                                                    <td>{ratingList.userFirstname + " " + ratingList.userLastname}</td>
+                                    <div className="col">
+                                        <div className="card card-small mb-4">
+                                            <div className="card-body p-0 pb-3 text-center table-responsive">
+                                                <table className="table mb-0 ">
+                                                    <thead className="bg-warning">
 
-                                                    <td><h5  className="text-warning">{rate.repeat(ratingList.ratingValue)}</h5></td>
-                                                    <td>{ratingList.ratingDescription}</td>
-                                                    <td>{ratingList.ratingCreated}</td>
-                                                </tr>
-                                            )}
+                                                    <tr>
+                                                        <th scope="col" className="border-0">#</th>
+                                                        <th scope="col" className="border-0">Name</th>
+                                                        <th scope="col" className="border-0">Rating</th>
+                                                        <th scope="col" className="border-0">Description</th>
+                                                        <th scope="col" className="border-0">Created</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {data.map((ratingList, index) =>
+                                                        <tr>
+                                                            <td>{index + 1}</td>
+                                                            <td>{ratingList.userFirstname + " " + ratingList.userLastname}</td>
 
-                                            </tbody>
-                                        </table>
+                                                            <td><h5
+                                                                className="text-warning">{rate.repeat(ratingList.ratingValue)}</h5>
+                                                            </td>
+                                                            <td>{ratingList.ratingDescription}</td>
+                                                            <td>{ratingList.ratingCreated}</td>
+                                                        </tr>
+                                                    )}
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                                : <div className="text-center mb-5 mt-5">
+                                    <img width="150px" src={notFound} alt="loading"/>
+                                    <p>no data</p>
+                                </div>
+                            }
+                        </>
 
                         : <div className="text-center">
                             <img width="150px" src={imageLoader} alt="loading"/>
