@@ -96,10 +96,10 @@ class TopupManagement extends Component {
                                             <div className="card-body text-center">
                                                 <div className="mb-3 mx-auto">
                                                     <img style={{
-                                                        width: "125px",
-                                                        height: "125px",
+                                                        width: "8rem",
+                                                        height: "8rem",
                                                         objectFit: "cover"
-                                                    }} className="rounded-circle"
+                                                    }} className="rounded-circle img-fluid"
                                                          src="https://image.freepik.com/free-vector/flat-money-saving-concept-background_23-2148150744.jpg"
                                                          alt="User Avatar"/>
                                                 </div>

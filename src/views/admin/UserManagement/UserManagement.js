@@ -15,7 +15,15 @@ class UserManagement extends Component {
 
     state = {
         isLoaded: false,
-        switch: 0
+        switch: 0,
+        searchValue:""
+    }
+
+    handleChangeInput = (e) =>{
+        const value = e.target.value
+        this.setState({
+            searchValue: value
+        })
     }
 
     cardPopupRead = (e) => {
@@ -33,7 +41,7 @@ class UserManagement extends Component {
     }
 
     getActiveUsersData = () => {
-        getActiveUsers()
+        getActiveUsers(this.state.searchValue)
             .then((res) => {
                 this.props.UserActiveData(res)
                 this.setState({
@@ -45,7 +53,7 @@ class UserManagement extends Component {
             });
     };
     getDeletedUsersData = () => {
-        getDeletedUsers()
+        getDeletedUsers(this.state.searchValue)
             .then((res) => {
                 this.props.UserDeleteData(res)
                 this.setState({
@@ -119,8 +127,6 @@ class UserManagement extends Component {
 
         const activeUser = this.props.activeUserData
         const deletedUser = this.props.deletedUserData
-        console.log("deletedUSer")
-        console.log(deletedUser)
 
         return (
             <>
@@ -131,7 +137,7 @@ class UserManagement extends Component {
                             <div className="card-body">
                                 <div className="row">
                                     <div className="col-lg-9 col-md-9 col-sm-12 text-center">
-                                        <UserSearch/>
+                                        <UserSearch handle={this.handleChangeInput} value={this.state.searchValue}/>
                                     </div>
                                     <div className="col-lg-3 col-md-3 col-sm-12 text-center">
                                         <div className="btn-group btn-group-toggle" data-toggle="buttons">

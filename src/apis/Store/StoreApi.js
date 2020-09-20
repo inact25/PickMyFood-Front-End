@@ -2,14 +2,14 @@ import axios from "axios"
 import {authToken} from "../Auth/AuthApis";
 import {baseUrl} from "../Base/Configs";
 
-export const getActiveStores = async () => {
-    const res = await axios.get(`${baseUrl}/stores?keyword`)
+export const getActiveStores = async (keyword) => {
+    const res = await axios.get(`${baseUrl}/stores?keyword=${keyword}`)
     return await res.data.data;
 };
 
 
-export const getNonactiveStores = async () => {
-    const res = await axios.get(`${baseUrl}/stores/NA?keyword`)
+export const getNonactiveStores = async (keyword) => {
+    const res = await axios.get(`${baseUrl}/stores/NA?keyword=${keyword}`)
     return await res.data.data;
 };
 

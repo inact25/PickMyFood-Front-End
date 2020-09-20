@@ -15,7 +15,23 @@ class StoreManagement extends Component {
 
     state = {
         isLoaded: false,
-        switch:0
+        switch:0,
+        searchValue:""
+    }
+
+    handleChangeInput = (e) => {
+        const value = e.target.value
+            this.setState({
+                    searchValue: [value]
+                }
+            )
+        // if (this.searchValue === ""){
+        //     if (this.state.switch === 0){
+        //         this.getActiveStoresData()
+        //     }else {
+        //         this.getDeletedStoresData()
+        //     }
+        // }
     }
 
     switch = (e) => {
@@ -86,7 +102,7 @@ class StoreManagement extends Component {
     }
 
     getActiveStoresData = () => {
-        getActiveStores()
+        getActiveStores(this.state.searchValue)
             .then((res) => {
                 this.props.StoreActiveData(res)
                 this.setState({
@@ -99,7 +115,7 @@ class StoreManagement extends Component {
     };
 
     getDeletedStoresData = () => {
-        getNonactiveStores()
+        getNonactiveStores(this.state.searchValue)
             .then((res) => {
                 this.props.StoreDeletedData(res)
                 this.setState({
@@ -127,8 +143,14 @@ class StoreManagement extends Component {
                             <div className="card-body border-bottom">
                                 <div className="row">
                                     <div className="col-lg-9 col-md-9 col-sm-12 text-center">
-                                        <StoreSearch/>
-                                    </div>
+                                        {this.state.switch === 0 ?
+                                            <StoreSearch handle={this.handleChangeInput}
+                                                         value={this.state.searchValue}/>
+                                            :
+                                            <StoreSearch handle={this.handleChangeInput}
+                                                         value={this.state.searchValue}/>
+                                        }
+                                        </div>
                                     <div className="col-lg-3 col-md-3 col-sm-12 text-center">
                                         <div className="btn-group btn-group-toggle" data-toggle="buttons">
                                             <label style={{maxHeight: "3rem"}}
@@ -159,13 +181,12 @@ class StoreManagement extends Component {
                                     <AllStoreData data={deletedStore}
                                                   load={this.state.isLoaded}
                                                   dataPopup={this.cardPopupChange}
-
                                     />
                                 }
                             </div>
-                            <div className="card-footer">
-                                <Pagination/>
-                            </div>
+                            {/*<div className="card-footer">*/}
+                            {/*    <Pagination/>*/}
+                            {/*</div>*/}
                         </>
                         : <div className="text-center">
                             <img width="150px" src={imageLoader} alt="loading"/>
