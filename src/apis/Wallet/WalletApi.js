@@ -1,21 +1,22 @@
 import axios from "axios";
 import {authToken} from "../Auth/AuthApis";
+import {baseUrl} from "../Base/Configs";
 
 export const getTopupList = async () => {
-    let res = await axios.get(`/topUp`,{
+    let res = await axios.get(`${baseUrl}/topUp`, {
         headers: {
-            token:authToken
+            token: authToken
         }
     })
     return await res.data.data;
 };
 
 export const confirmTopup = async (uid,price)=> {
-    let res = await axios.post(`/wallet/transfer/${uid}`,{
-        amount : price
-    },{
+    let res = await axios.post(`${baseUrl}/wallet/transfer/${uid}`, {
+        amount: price
+    }, {
         headers: {
-            token:authToken
+            token: authToken
         }
     })
     return res.data.data
